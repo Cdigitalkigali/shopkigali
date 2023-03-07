@@ -1,0 +1,2 @@
+# shopkigali
+kigali shop directory
