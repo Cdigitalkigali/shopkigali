@@ -1,0 +1,148 @@
+<!--This html file contains everything that is uniform on every page. -->
+{% extends ".base.html" %}
+
+<!--Tab title will be passed to lower-level templates -->
+{% block title %}
+{% block name %}{% endblock %}
+{% endblock %}
+
+<!--Content-->
+{% block content %}
+
+<!--NAVBAR-->
+<nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+      <img src="../static/images/logo.png" alt="SHOPKigali" width="100" height="100">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">About</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Malls & Shopping Centers
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Names</a></li>
+            <li><a class="dropdown-item" href="#">Stores</a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Offers & Promotion
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Current Sales</a></li>
+            <li><a class="dropdown-item" href="#">Events</a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" href="#">Gift Cards</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Blog
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Lifestyle</a></li>
+            <li><a class="dropdown-item" href="#">Fashion</a></li>
+            <li><a class="dropdown-item" href="#">Food and Drink</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link">Contact</a>
+        </li>
+      </ul>
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-primary" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+      </form>
+    </div>
+  </div>
+</nav>
+{% block main %}{% endblock %}
+<!-- Site footer -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-6">
+        <h6>Contact Us</h6>
+        <!-- Name input-->
+        <div class="form-group">
+          <div class="col-md-9">
+            <input id="name" name="name" type="text" placeholder="Your name" class="form-control">
+          </div>
+        </div>
+
+        <!-- Email input-->
+        <div class="form-group">
+          <div class="col-md-9">
+            <input id="email" name="email" type="text" placeholder="Your email" class="form-control">
+          </div>
+        </div>
+
+        <!-- Message body -->
+        <div class="form-group">
+          <div class="col-md-9">
+            <textarea class="form-control" id="message" name="message" placeholder="Please enter your message here..."
+              rows="5"></textarea>
+          </div>
+        </div>
+
+        <!-- Form actions -->
+        <div class="form-group">
+          <div class="col-md-12 text-right">
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </div>
+        </fieldset>
+      </div>
+
+      <div class="col-xs-6 col-md-3">
+        <h6>Explore</h6>
+        <ul class="footer-links">
+          <li><a href="http://scanfcode.com/category/c-language/">Malls</a></li>
+          <li><a href="http://scanfcode.com/category/front-end-development/">Shops</a></li>
+          <li><a href="http://scanfcode.com/category/back-end-development/">Promotions</a></li>
+          <li><a href="http://scanfcode.com/category/java-programming-language/">Blog</a></li>
+        </ul>
+      </div>
+
+      <div class="col-xs-6 col-md-3">
+        <h6>Quick Links</h6>
+        <ul class="footer-links">
+          <li><a href="http://scanfcode.com/about/">About Us</a></li>
+          <li><a href="http://scanfcode.com/contact/">Contact Us</a></li>
+          <li><a href="http://scanfcode.com/contribute-at-scanfcode/">Contribute</a></li>
+          <li><a href="http://scanfcode.com/privacy-policy/">Privacy Policy</a></li>
+          <li><a href="http://scanfcode.com/sitemap/">Sitemap</a></li>
+        </ul>
+      </div>
+    </div>
+    <hr>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="">
+        <p class="copyright-text">Copyright &copy; 2023 All Rights Reserved by
+          <a href="#">Comet Digital Ltd</a>.
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+{% endblock %}
