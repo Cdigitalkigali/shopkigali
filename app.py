@@ -13,29 +13,13 @@ def about():
 def malls():
     return render_template("malls.html")
 
-@app.route("/malls-and-shopping-centers/names")
-def names():
-    return render_template("names.html")
+@app.route("/terms")
+def terms():
+    return render_template("terms.html")
 
-@app.route("/malls-and-shopping-centers/stores")
-def stores():
-    return render_template("stores.html")
-
-@app.route("/offers-and-promotions")
-def offersandpromo():
-    return render_template("offersandpromo.html")
-
-@app.route("/offers-and-promotions/current-sales")
-def currentsales():
-    return render_template("currentsales.html")
-
-@app.route("/offers-and-promotions/events")
-def events():
-    return render_template("events.html")
-
-@app.route("/offers-and-promotions/gift-cards")
-def giftcards():
-    return render_template("giftcards.html")
+@app.route("/privacy")
+def privacy():
+    return render_template("privacy.html")
 
 @app.route("/blog")
 def blog():
