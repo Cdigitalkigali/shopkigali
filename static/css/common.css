@@ -148,7 +148,7 @@ div.banner {
 
 main.double-column {
     background-color: transparent;
-    margin: 0px 70px;
+    margin: 0px 50px;
     min-height: 100vh;
     display: grid;
     grid-template-columns: repeat(10, 1fr);
@@ -159,7 +159,7 @@ main.double-column {
 
 main.double-column div.sub-column {
     background-color: white;
-    padding: 20px;
+    padding: 10px;
 }
 
 .content {
