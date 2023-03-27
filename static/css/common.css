@@ -148,12 +148,12 @@ div.banner {
 
 main.double-column {
     background-color: transparent;
-    margin: 0px 100px;
+    margin: 0px 70px;
     min-height: 100vh;
     display: grid;
     grid-template-columns: repeat(10, 1fr);
     grid-template-rows: repeat(5, 1fr);
-    grid-column-gap: 50px;
+    grid-column-gap: 30px;
     grid-row-gap: 0px;
 }
 
