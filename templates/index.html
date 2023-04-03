@@ -10,41 +10,8 @@ Homepage
 {% block main %}
 <main class="double-column">
   <div class="content sub-column">
-    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-      <div class="carousel-indicators">
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
-          aria-current="true" aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-          aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-          aria-label="Slide 3"></button>
-      </div>
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img src="https://deih43ym53wif.cloudfront.net/cityscape-things-to-do-in-kigali-rwanda_44e57bd0bf.jpeg"
-            class="d-block w-100" alt="...">
-          <div class="carousel-caption d-none d-md-block">
-            <h1>Find your shopping destination in Kigali</h1>
-          </div>
-        </div>
-        <div class="carousel-item">
-          <img src="https://www.explorerwandatours.com/wp-content/uploads/2019/08/Kigali-City.jpg" class="d-block w-100"
-            alt="...">
-          <div class="carousel-caption d-none d-md-block">
-            <h1>Find your shopping destination in Kigali</h1>
-          </div>
-        </div>
-        <div class="carousel-item">
-          <img src="https://mediaim.expedia.com/destination/1/ac78c5f6f864cde812b97d395950e5b6.jpg"
-            class="d-block w-100" alt="...">
-          <div class="carousel-caption d-none d-md-block">
-            <h1>Find your shopping destination in Kigali</h1>
-          </div>
-        </div>
-      </div>
-    </div>
     <section class="about">
-      <h4>About Us</h4>
+      <h2>About Us</h2><br>
       <p>Welcome to ShopKigali - the ultimate guide to shopping in the beautiful city of Kigali! Our
         website is dedicated to helping you find the best shops, boutiques, and businesses in Kigali's
         top malls and shopping districts.
@@ -57,7 +24,7 @@ Homepage
       <button type="button" class="btn btn-primary">Learn More</button>
     </section>
     <section class="malls">
-      <h4>Malls</h4>
+      <h2>Malls</h2>
       <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
           <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
@@ -107,7 +74,7 @@ Homepage
       </div>
     </section>
     <section class="offers">
-      <h4>Offers</h4>
+      <h2>Restaurants and Hotels</h2>
       <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
           <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
@@ -158,7 +125,8 @@ Homepage
     </section>
   </div>
   <div class="ads sub-column">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-0847299184167787"
+    <section style="min-width: 50vh;">
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-0847299184167787"
       crossorigin="anonymous"></script>
     <ins class="adsbygoogle" style="display:block" data-ad-format="autorelaxed" data-ad-client="ca-pub-0847299184167787"
       data-ad-slot="9473987533"></ins>
@@ -168,6 +136,7 @@ Homepage
     <script>
       (adsbygoogle = window.adsbygoogle || []).push({});
     </script>
+    </section>
   </div>
 </main>
 {% endblock %}

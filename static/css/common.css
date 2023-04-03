@@ -6,7 +6,7 @@
 }
 
 body {
-    background-color: whitesmoke;
+    background-color: rgb(240, 240, 240);
     overflow-x: hidden;
 }
 
@@ -20,7 +20,7 @@ body {
 }
 
 .navbar {
-    background-color: rgba(255, 255, 255, .8) !important;
+    background-color: rgba(255, 255, 255, 0.8) !important;
     /*
     background: -moz-linear-gradient(270deg, rgba(0,108,255,.8) 22%, rgba(10,0,162,.8) 66%);
     background: -webkit-linear-gradient(270deg, rgba(0,108,255,.8) 22%, rgba(10,0,162,.8) 66%);
@@ -41,7 +41,7 @@ body {
 }
 
 .navbar-brand {
-    padding-right: 80px;
+    padding-right: 20px;
 }
 
 .dropdown-item {
@@ -53,12 +53,8 @@ body {
 }
 
 .site-footer {
-    background: rgb(0, 108, 255);
-    background: -moz-linear-gradient(270deg, rgba(0, 108, 255, 1) 22%, rgba(10, 0, 162, 1) 66%);
-    background: -webkit-linear-gradient(270deg, rgba(0, 108, 255, 1) 22%, rgba(10, 0, 162, 1) 66%);
-    background: linear-gradient(270deg, rgba(0, 108, 255, 1) 22%, rgba(10, 0, 162, 1) 66%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#006cff", endColorstr="#0a00a2", GradientType=1);
-    padding: 45px 0 20px;
+    background-color: rgb(20, 20, 20);
+    padding: 20px 0px 20px;
     font-size: 15px;
     line-height: 24px;
     color: white;
@@ -67,7 +63,7 @@ body {
     color: #fff;
     font-size: 16px;
     text-transform: uppercase;
-    margin-top: 5px;
+    margin-top: 20px;
     letter-spacing: 2px
 }
 
@@ -143,25 +139,17 @@ div.banner {
     background-image: url("https://st2.depositphotos.com/1043178/11422/i/600/depositphotos_114229584-stock-photo-view-of-downtown-kigali.jpg");
     background-position: bottom;
     background-size: cover;
-    margin-bottom: -20vh;
 }
 
 main.double-column {
     background-color: transparent;
-    margin: 0px 20px;
-    min-height: 100vh;
+    margin: 0px 60px 20px;
     display: grid;
     grid-template-columns: repeat(10, 1fr);
     grid-template-rows: repeat(5, 1fr);
     grid-column-gap: 20px;
     grid-row-gap: 0px;
 }
-
-main.double-column div.sub-column {
-    background-color: white;
-    padding: 10px;
-}
-
 .content {
     grid-area: 1 / 1 / 6 / 8;
 }
@@ -213,7 +201,10 @@ main.double-column div.sub-column {
 }
 
 section {
-    padding: 20px 0px;
+    padding: 40px;
+    margin: 20px 0px;
+    background-color: white;
+    border-radius: 10px;
 }
 
 h4 {
@@ -238,4 +229,20 @@ h4 {
     flex-direction: row;
     justify-content: center;
     align-items: center;
+}
+.card {
+    display: flex !important;
+    flex-direction: row;
+    border: none !important;
+}
+.card-body{
+    padding: 0px 20px !important;
+}
+.card-img-left{
+    width: 50% !important;
+}
+.btn{
+    margin-right: 5px;
+    border-radius: 50px;
+    width: 120px;
 }
