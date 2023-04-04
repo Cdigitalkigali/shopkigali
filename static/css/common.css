@@ -2,13 +2,16 @@
     box-sizing: border-box;
     margin: 0px;
     padding: 0px;
-    font-family: "PT Sans";
+    font-family: 'Rubik', sans-serif;
 }
 
 body {
     background-color: rgb(240, 240, 240);
     overflow-x: hidden;
 }
+body::-webkit-scrollbar {
+    display: none;
+  }
 
 .dropdown:hover>.dropdown-menu {
     display: block;
@@ -20,18 +23,18 @@ body {
 }
 
 .navbar {
-    background-color: rgba(255, 255, 255, 0.8) !important;
+    background-color: rgba(255, 255, 255) !important;
     /*
     background: -moz-linear-gradient(270deg, rgba(0,108,255,.8) 22%, rgba(10,0,162,.8) 66%);
     background: -webkit-linear-gradient(270deg, rgba(0,108,255,.8) 22%, rgba(10,0,162,.8) 66%);
     background: linear-gradient(270deg, rgba(0,108,255,.8) 22%, rgba(10,0,162,.8) 66%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#006cff",endColorstr="#0a00a2",GradientType=1);
     */
-    padding: 0px 30px;
+    padding: 0px 60px;
 }
 
 .navbar a {
-    font-size: 16px;
+    font-size: 15px !important;
     color: blue;
 }
 
@@ -59,6 +62,7 @@ body {
     line-height: 24px;
     color: white;
 }
+
 .site-footer h6 {
     color: #fff;
     font-size: 16px;
@@ -104,6 +108,7 @@ body {
 .site-footer .social-icons {
     text-align: right
 }
+
 .copyright-text {
     margin: 0;
     text-align: center;
@@ -125,6 +130,7 @@ body {
         text-align: center
     }
 }
+
 .form-group {
     margin: 10px 0px;
 }
@@ -134,22 +140,31 @@ body {
 }
 
 div.banner {
-    height: 40vh;
+    height: 350px;
     width: 100vw;
-    background-image: url("https://st2.depositphotos.com/1043178/11422/i/600/depositphotos_114229584-stock-photo-view-of-downtown-kigali.jpg");
-    background-position: bottom;
+    background-image: url("../images/Kigali\'s\ Newest\ Shopping\ directory\ \(1\).png");
+    background-position: center;
+    background-size: cover;
+}
+
+div.banner2 {
+    height: 350px;
+    width: 100vw;
+    background-image: url("../images/Kigali\'s\ Newest\ Shopping\ directory\ \(2\).png");
+    background-position: center;
     background-size: cover;
 }
 
 main.double-column {
     background-color: transparent;
-    margin: 0px 60px 20px;
+    margin: 0px 120px 20px;
     display: grid;
     grid-template-columns: repeat(10, 1fr);
     grid-template-rows: repeat(5, 1fr);
     grid-column-gap: 20px;
     grid-row-gap: 0px;
 }
+
 .content {
     grid-area: 1 / 1 / 6 / 8;
 }
@@ -185,40 +200,79 @@ main.double-column {
     margin: 0px 1px 3px 1px;
 }
 
-.hero {
-    width: 100%;
-    height: 60vh;
-    background-image: url("https://radissonhotels.iceportal.com/image/radisson-blu-hotel-convention-center-kigali/exterior/16256-116537-f63878562_3xl.jpg");
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 30px;
-    box-shadow: 0px 0px .5px .5px silver;
-    color: white;
-}
 
 section {
-    padding: 40px;
+    padding: 20px;
     margin: 20px 0px;
     background-color: white;
     border-radius: 10px;
 }
 
-h4 {
-    text-transform: uppercase;
+.scrolling-wrapper {
+    width: 100%;
+    overflow-x: scroll;
+}
+
+.scrolling-wrapper {
+    scrollbar-width: auto;
+    scrollbar-color: silver #ffffff;
+}
+
+/* Chrome, Edge, and Safari */
+.scrolling-wrapper::-webkit-scrollbar {
+    width: 5px;
+}
+
+.scrolling-wrapper::-webkit-scrollbar-track {
+    background: #ffffff;
+}
+
+.scrolling-wrapper::-webkit-scrollbar-thumb {
+    background-color: silver;
+    border-radius: 10px;
+    border: 3px solid #ffffff;
+}
+
+.checked {
+    color: orange;
 }
 
 .card {
-    margin: 10px 10px 10px 0px;
+    border: 1.5px solid silver;
+    border-radius: 10px;
+    min-width: 300px;
 }
-.carousel{
-    height: 400px !important
+.card-vertical{
+    min-height: 500px;
 }
-.carousel-item {
-    height: 400px;
+@media only screen and (max-width : 768px) {
+    .scrolling-wrapper{
+       display: block !important;
+    }
+}
+
+
+.rating {
+    padding: 10px 0px;
+    font-size: 14px;
+    position: absolute;
+    bottom: 0;
+}
+
+.card-img-top {
+    height: 180px !important;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+.card-img-left {
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+}
+.card-horizontal{
+    display: flex !important;
+    flex-direction: row;
+    height: 250px !important;
+    margin-bottom: 10px;
 }
 
 .blog-banner {
@@ -230,18 +284,8 @@ h4 {
     justify-content: center;
     align-items: center;
 }
-.card {
-    display: flex !important;
-    flex-direction: row;
-    border: none !important;
-}
-.card-body{
-    padding: 0px 20px !important;
-}
-.card-img-left{
-    width: 50% !important;
-}
-.btn{
+
+.btn {
     margin-right: 5px;
     border-radius: 50px;
     width: 120px;
