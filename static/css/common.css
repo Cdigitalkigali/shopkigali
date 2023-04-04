@@ -145,6 +145,7 @@ div.banner {
     background-image: url("../images/default-banner.png");
     background-position: center;
     background-size: cover;
+    background-attachment: fixed;
 }
 
 div.banner2 {
