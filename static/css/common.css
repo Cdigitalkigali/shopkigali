@@ -9,9 +9,10 @@ body {
     background-color: rgb(240, 240, 240);
     overflow-x: hidden;
 }
+
 body::-webkit-scrollbar {
     display: none;
-  }
+}
 
 .dropdown:hover>.dropdown-menu {
     display: block;
@@ -33,6 +34,10 @@ body::-webkit-scrollbar {
     padding: 0px 60px;
 }
 
+a{
+    text-decoration: none !important;
+    color: inherit;
+}
 .navbar a {
     font-size: 15px !important;
     color: blue;
@@ -144,8 +149,19 @@ div.banner {
     width: 100vw;
     background-image: url("../images/default-banner.png");
     background-position: center;
-    background-size: cover;
+    background-size: contain;
     background-attachment: fixed;
+
+}
+
+div.banner .transbox {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
 }
 
 div.banner2 {
@@ -241,14 +257,35 @@ section {
 .card {
     border: 1.5px solid silver;
     border-radius: 10px;
+}
+.card-padding{
+    padding: 10px;
+}
+.card:hover{
+    cursor: pointer;
+    transform: translateY(-5px);
+    box-shadow: 0px 0px 15px silver;
+    transition: .5s;
+}
+#nohover:hover{
+    cursor: inherit;
+    transform: translateY(0px);
+    box-shadow: none;
+    transition: .5s;
+}
+.card-vertical {
+    min-height: 500px;
     min-width: 300px;
 }
-.card-vertical{
-    min-height: 500px;
+
+.card-blog {
+    border: none;
+    padding: 0px;
 }
+
 @media only screen and (max-width : 768px) {
-    .scrolling-wrapper{
-       display: block !important;
+    .scrolling-wrapper {
+        display: block !important;
     }
 }
 
@@ -265,19 +302,32 @@ section {
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
 }
+
 .card-img-left {
     border-bottom-left-radius: 10px;
     border-top-left-radius: 10px;
 }
-.card-horizontal{
+
+.card-horizontal {
     display: flex !important;
     flex-direction: row;
     height: 250px !important;
     margin-bottom: 10px;
 }
+.card-horizontal-2 {
+    display: flex !important;
+    flex-direction: row;
+    height: 350px !important;
+    margin-bottom: 10px;
+}
+.fa-solid{
+    width: 10px;
+    margin-right: 10px;
+}
+
 @media only screen and (max-width : 768px) {
-    .card-horizontal{
-       display: block !important;
+    .card-horizontal {
+        display: block !important;
     }
 }
 

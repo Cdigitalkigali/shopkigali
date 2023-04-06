@@ -1,0 +1,35 @@
+<!-- homepage content -->
+{% extends ".layout.html" %}
+
+<!-- tab title -->
+{% block name %}
+Login
+{% endblock %}
+
+<!-- main content -->
+{% block main %}
+<main class="double-column">
+  <div class="content sub-column">
+    <section style="padding: 50px 100px; min-height: 80vh">
+        <h3>Login</h3>
+        <br>
+        <form>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Email address</label>
+              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Password</label>
+              <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+            </div>
+            <br>
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <br>
+
+          </form>
+    </section>
+  </div>
+  <div class="ads sub-column">
+  </div>
+</main>
+{% endblock %}
