@@ -37,6 +37,18 @@ def login():
 def admin():
     return render_template("admin-login.html")
 
+@app.route("/admin/contacts")
+def admin_contacts():
+    return render_template("admin-contacts.html")
+
+@app.route("/admin/listing-applications")
+def admin_listing_applications():
+    return render_template("admin-listing-applications.html")
+
+@app.route("/admin/mall-listings")
+def admin_malls():
+    return render_template("admin-mall-listings.html")
+
 
 
 

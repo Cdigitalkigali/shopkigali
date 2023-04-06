@@ -1,0 +1,33 @@
+{% extends "admin-layout.html" %}
+
+{% block main %}
+<h3><strong>
+    Listing Applications
+</strond></h3>
+<p>Any listing applications sent via the form on the site will be shown here</p>
+<br>
+<table class="table" style="max-width: 1000px;">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Business Name</th>
+        <th scope="col">email</th>
+        <th scope="col">Date</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row" style="align-items: center;">1</th>
+        <td>Java House Kigali</td>
+        <td>doof@kigaliheights.com</td>
+        <td>1/1/2023</td>
+        <td>
+            <button type="button" class="btn btn-primary btn-block mb-4">View</button>
+            <button type="button" class="btn btn-danger btn-block mb-4">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+{% endblock %}

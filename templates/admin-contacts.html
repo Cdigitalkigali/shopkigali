@@ -1,0 +1,45 @@
+{% extends "admin-layout.html" %}
+
+{% block main %}
+<h3><strong>
+    Contacts
+</strond></h3>
+<p>Any message sent via the site's contact form will appear here</p>
+<br>
+<table class="table" style="max-width: 1000px;">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Date</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row" style="align-items: center;">1</th>
+        <td>T'Challa</td>
+        <td>t'challa@wakanda.gov</td>
+        <td>1/1/2023</td>
+        <td>
+            <button type="button" class="btn btn-primary btn-block mb-4">View</button>
+            <button type="button" class="btn btn-primary btn-block mb-4">Reply</button>
+            <button type="button" class="btn btn-danger btn-block mb-4">Delete</button>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row" style="align-items: center;">2</th>
+        <td>_</td>
+        <td>_</td>
+        <td>1/2/2023</td>
+        <td>
+            <button type="button" class="btn btn-primary btn-block mb-4">View</button>
+            <button type="button" class="btn btn-primary btn-block mb-4">Reply</button>
+            <button type="button" class="btn btn-danger btn-block mb-4">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+{% endblock %}
