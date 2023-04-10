@@ -4,17 +4,25 @@ from auxiliary import dbinit
 from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
 from tempfile import gettempdir
+import os
 
+# Initialize App
 app = Flask(__name__)
+# Initialize Database
 db = SQL("sqlite:///database.db")
 dbinit()
-
+# Define flask_session config
 app.config["SESSION_FILE_DIR"] = gettempdir()
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 app.config["SECRET_KEY"] = "789/456/127/894/561/278ssa94/5ds6a1s2"
-
 Session(app)
+# File upload config
+basedir = os.path.abspath(os.path.dirname(__file__))
+UPLOAD_FOLDER = os.path.join(basedir, 'static/uploads')
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.config['ALLOWED_EXTENSIONS'] = ALLOWED_EXTENSIONS
 
 
 ## ---------------------------------------------------------- 
@@ -138,7 +146,7 @@ def privacy():
 @app.route("/admin", methods=["GET", "POST"])
 def admin():
     if request.method == "GET":
-        return render_template("admin-login.html")
+        return render_template("admin-interfaces/admin-login.html")
     else:
         password = request.form.get("password")
         password_correct = "78945612"
@@ -161,3 +169,42 @@ def admin_listing_applications():
 @app.route("/admin/mall-listings")
 def admin_malls():
     return render_template("admin-mall-listings.html")
+
+@app.route("/admin/mall-listings/new", methods=["GET", "POST"])
+def admin_malls_new():
+    if request.method == "GET":
+        return render_template("admin-create-mall.html")
+    else:
+        # Fetch mall details
+        mall_name = request.form.get("mall_name")
+        mall_address = request.form.get("mall_address")
+        mall_phone = request.form.get("mall_phone")
+        mall_website = request.form.get("mall_website")
+        mall_opening = request.form.get("mall_opening")
+        mall_closing = request.form.get("mall_closing")
+        mall_description = request.form.get("mall_description")
+
+        # Generate Unique ID
+        num = random.randrange(1, 10**7)
+        new_id = '{:07}'.format(num)
+
+        # Handle Uploaded Files
+        mall_photo = request.files['photo']
+        mall_photo.save(os.path.join(UPLOAD_FOLDER, secure_filename(new_id + '.jpg')))
+
+        # Write data into database
+        db.execute("INSERT INTO mall_listings (id, mall_name, mall_address, mall_phone, mall_website, mall_opening, mall_closing, mall_description, mall_photo_path) VALUES (:id, :name, :address, :phone, :website, :opening, :closing, :description, :photo)",
+        id = new_id,
+        name = mall_name,
+        address = mall_address,
+        phone = mall_phone,
+        website = mall_website,
+        opening = mall_opening,
+        closing = mall_closing,
+        description = mall_description,
+        photo = "../static/uploads/" + secure_filename(new_id + '.jpg'),
+        )
+
+        # Finish
+        flash("Successfully Listed Mall")
+        return redirect("/admin/mall-listings")
