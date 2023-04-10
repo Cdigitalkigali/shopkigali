@@ -1,0 +1,58 @@
+<!-- homepage content -->
+{% extends ".layout.html" %}
+
+<!-- tab title -->
+{% block name %}
+Blog
+{% endblock %}
+
+<!-- main content -->
+{% block main %}
+<main class="double-column">
+    <div class="content sub-column">
+        <section>
+            <h5>Blog</h5>
+        </section>
+        <section>
+            <div class="card card-large" style="width: 100%;">
+                <img src="https://www.tripsavvy.com/thmb/RMnBKZ1aV6hfwFDea6MBsq5WdkI=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Rwanda_sambaza-0683660a807442318cf67decfa113e49.jpeg" class="card-img" alt="...">
+                <div class="card-body">
+                    <h1 class="card-title"><strong>Taste the Flavors of Kigali: Exploring the Food Scene in Rwanda's Capital City</strong></h1>
+                    <p>FOOD AND DRINK</p>
+                    <p class="card-text">Kigali, the capital city of Rwanda, is known for its vibrant culture and breath-taking scenery...</p>
+                    <a href="#" class="btn btn-primary">Read More</a>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="ads sub-column">
+        <section style="height: 70vh;">
+            <p>Advertisement</p>
+            <script async
+                src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-0847299184167787"
+                crossorigin="anonymous"></script>
+            <ins class="adsbygoogle" style="display:block" data-ad-format="autorelaxed"
+                data-ad-client="ca-pub-0847299184167787" data-ad-slot="9473987533"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </section>
+        <section>
+            <h5>Latest from the Blog</h5>
+            <br>
+            <div class="card card-blog card-small" style="width: 100%;">
+                <img src="https://www.tripsavvy.com/thmb/RMnBKZ1aV6hfwFDea6MBsq5WdkI=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Rwanda_sambaza-0683660a807442318cf67decfa113e49.jpeg"
+                    class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Taste the Flavors of Kigali: Exploring the Food Scene in Rwanda's Capital
+                        City</h5>
+                    <p class="card-text">Kigali, the capital city of Rwanda, is known for its vibrant culture and
+                        breath-taking
+                        scenery...</p>
+                    <a href="#" class="btn btn-primary">Read More</a>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+{% endblock %}

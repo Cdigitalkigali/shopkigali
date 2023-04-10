@@ -6,40 +6,35 @@
 </strond></h3>
 <p>Any message sent via the site's contact form will appear here</p>
 <br>
-<table class="table" style="max-width: 1000px;">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Name</th>
-        <th scope="col">Email</th>
-        <th scope="col">Date</th>
-        <th scope="col">Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th scope="row" style="align-items: center;">1</th>
-        <td>T'Challa</td>
-        <td>t'challa@wakanda.gov</td>
-        <td>1/1/2023</td>
-        <td>
-            <button type="button" class="btn btn-primary btn-block mb-4">View</button>
-            <button type="button" class="btn btn-primary btn-block mb-4">Reply</button>
-            <button type="button" class="btn btn-danger btn-block mb-4">Delete</button>
-        </td>
-      </tr>
-      <tr>
-        <th scope="row" style="align-items: center;">2</th>
-        <td>_</td>
-        <td>_</td>
-        <td>1/2/2023</td>
-        <td>
-            <button type="button" class="btn btn-primary btn-block mb-4">View</button>
-            <button type="button" class="btn btn-primary btn-block mb-4">Reply</button>
-            <button type="button" class="btn btn-danger btn-block mb-4">Delete</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+<!-- ----- DISPLAY UNREAD MESSAGES ----- -->
+<h4>Unread Messages</h4>
+{% if unread|length == 0 %}
+<p>Nothing to see here! You've read all recent messages</p>
+{% else %}
+  {% for i in range(unread|length) %}
+    <div style="background-color: white; padding: 20px; width: 80%; margin: 10px 0px;">
+      <p><strong>ID:</strong> {{ unread[0]["id"] }}</p>
+      <p><strong>Name:</strong> {{ unread[0]["sender_name"] }}</p>
+      <p><strong>Email:</strong> {{ unread[0]["sender_email"] }}</p>
+      <p><strong>Message:</strong> {{ unread[0]["sender_message"] }}</p>
+      <button type="submit" class="btn btn-primary">Mark As Read</button>
+    </div>
+  {% endfor %}
+{% endif %}
+<!-- ----- DISPLAY READ MESSAGES ----- -->
+<h4>Read Messages</h4>
+{% if read|length == 0 %}
+<p>Nothing to see here!</p>
+{% else %}
+  {% for i in range(read|length) %}
+    <div style="background-color: white; padding: 20px; width: 60%;">
+      <p><strong>ID:</strong> {{ read[0]["id"] }}</p>
+      <p><strong>Name:</strong> {{ read[0]["sender_name"] }}</p>
+      <p><strong>Email:</strong> {{ read[0]["sender_email"] }}</p>
+      <p><strong>Message:</strong> {{ read[0]["sender_message"] }}</p>
+      <button type="submit" class="btn btn-danger">Delete</button>
+    </div>
+  {% endfor %}
+{% endif %}
 
 {% endblock %}
