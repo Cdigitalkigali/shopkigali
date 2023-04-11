@@ -1,9 +1,8 @@
 {% extends "admin-layout.html" %}
 
 {% block main %}
-<div class="body-content" style="width: 85%; padding: 20px;">
+<div style="width: 85%; padding: 20px;">
     <h3><strong>Add Mall Listing</strong></h3>
-    <button type="button" class="btn btn-primary btn-block mb-4">Create New Listing</button>
     <br>
     <form action="/admin/mall-listings/new" method="POST">
         <div class="mb-3">
@@ -25,20 +24,21 @@
         </div>
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Opening Time</label>
-            <input name="mall_opening" type="date" class="form-control">
+            <input name="mall_opening" type="text" class="form-control">
         </div>
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Closing Time</label>
-            <input name="mall_closing" type="date" class="form-control">
+            <input name="mall_closing" type="text" class="form-control">
         </div>
         <div class="mb-3">
             <label for="exampleFormControlTextarea1" class="form-label">Description</label>
-            <textarea name="description" class="form-control" rows="3"></textarea>
+            <textarea name="mall_description" class="form-control" rows="3"></textarea>
         </div>
         <div class="mb-3">
-            <label for="formFileMultiple" class="form-label">Upload Picture</label>
-            <input name="photo" class="form-control" type="file">
+            <label for="formFileMultiple" class="form-label">Image Link</label>
+            <input name="photo" class="form-control" type="text">
         </div>
+        <button type="submit" class="btn btn-primary btn-block mb-4">Create</button>
     </form>
 
 </div>

@@ -12,17 +12,16 @@ Malls and Shopping Centers In Kigali - ShopKigali
   <div class="content sub-column">
     <section>
         <div id="nohover" class="card card-horizontal-2 card-large" style="width: 100%; border: none;">
-            <img src="https://www.ktpress.rw/wp-content/uploads/2022/07/Silverback-Mall2.jpg" class="card-img-left" width="50%" alt="...">
+            <img src="{{ mall[0]['mall_photo_path'] }}" class="card-img-left" width="50%" alt="...">
             <div class="card-body">
-              <h4 class="card-title"><strong>Silverback Mall</strong></h4>
-              <p>NYARUTARAMA, KIGALI</p>
-              <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet
-                consectetur adipisicing elit.
+              <h4 class="card-title"><strong>{{ mall[0]["mall_name"] }}</strong></h4>
+              <p>{{ mall[0]["mall_address"] }}</p>
+              <p class="card-text">{{ mall[0]["mall_description"] }}
                 <br><br>
-                <span style="color: grey;"><i class="fa-solid fa-location-dot"></i> KN 5 Rd, Kigali</span><br>
-                <span style="color: grey;"><i class="fa-solid fa-globe"></i> No website </span><br>
-                <span style="color: grey;"><i class="fa-solid fa-phone"></i> 0786 890 967</span><br>
-                <span style="color: grey;"><i class="fa-solid fa-clock"></i> Closes 9pm</span><br>
+                <span style="color: grey;"><i class="fa-solid fa-location-dot"></i>{{ mall[0]["mall_address"] }}</span><br>
+                <span style="color: grey;"><i class="fa-solid fa-globe"></i> {{ mall[0]["mall_website"] }} </span><br>
+                <span style="color: grey;"><i class="fa-solid fa-phone"></i> {{ mall[0]["mall_phone"] }} </span><br>
+                <span style="color: grey;"><i class="fa-solid fa-clock"></i> {{ mall[0]["mall_opening"] }} - {{ mall[0]["mall_closing"] }} </span><br>
               </p>
               <div class="rating">
                 <span class="fa fa-star checked"></span>

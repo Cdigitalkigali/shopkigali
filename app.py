@@ -3,8 +3,11 @@ from cs50 import SQL
 from auxiliary import dbinit
 from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
+from werkzeug.exceptions import default_exceptions, HTTPException, InternalServerError
+from werkzeug.utils import secure_filename
 from tempfile import gettempdir
 import os
+import random
 
 # Initialize App
 app = Flask(__name__)
@@ -31,8 +34,8 @@ app.config['ALLOWED_EXTENSIONS'] = ALLOWED_EXTENSIONS
 
 @app.route("/")
 def index():
-    session.clear()
-    return render_template("index.html")
+    malls = db.execute("SELECT * FROM mall_listings")
+    return render_template("index.html", malls=malls)
 
 @app.route("/about")
 def about():
@@ -40,11 +43,13 @@ def about():
 
 @app.route("/malls-and-shopping-centers")
 def malls_and_shopping_centers():
-    return render_template("malls-and-shopping-centers.html")
+    malls = db.execute("SELECT * FROM mall_listings")
+    return render_template("malls-and-shopping-centers.html", malls=malls)
 
-@app.route("/mall")
-def mall():
-    return render_template("mall.html")
+@app.route("/malls-and-shopping-centers/<mall_id>")
+def mall(mall_id):
+    mall = db.execute("SELECT * FROM mall_listings WHERE id = :id", id=mall_id)
+    return render_template("mall.html", mall=mall)
 
 @app.route("/hotels")
 def hotels():
@@ -146,7 +151,7 @@ def privacy():
 @app.route("/admin", methods=["GET", "POST"])
 def admin():
     if request.method == "GET":
-        return render_template("admin-interfaces/admin-login.html")
+        return render_template("/admin-login.html")
     else:
         password = request.form.get("password")
         password_correct = "78945612"
@@ -168,7 +173,14 @@ def admin_listing_applications():
 
 @app.route("/admin/mall-listings")
 def admin_malls():
-    return render_template("admin-mall-listings.html")
+    malls = db.execute("SELECT * FROM mall_listings")
+    return render_template("admin-mall-listings.html", malls=malls)
+
+@app.route("/admin/mall-listings/<mall_id>")
+def admin_mall_listing(mall_id):
+    mall = db.execute("SELECT * FROM mall_listings WHERE id = :id", id=mall_id)
+    return render_template("admin-mall.html", mall=mall)
+
 
 @app.route("/admin/mall-listings/new", methods=["GET", "POST"])
 def admin_malls_new():
@@ -183,14 +195,15 @@ def admin_malls_new():
         mall_opening = request.form.get("mall_opening")
         mall_closing = request.form.get("mall_closing")
         mall_description = request.form.get("mall_description")
+        mall_photo = request.form.get("photo")
 
         # Generate Unique ID
         num = random.randrange(1, 10**7)
         new_id = '{:07}'.format(num)
 
         # Handle Uploaded Files
-        mall_photo = request.files['photo']
-        mall_photo.save(os.path.join(UPLOAD_FOLDER, secure_filename(new_id + '.jpg')))
+        # photo = request.files['photo']
+        # photo.save(os.path.join(Config.UPLOAD_FOLDER, secure_filename(new_id + '_photo.jpg')))
 
         # Write data into database
         db.execute("INSERT INTO mall_listings (id, mall_name, mall_address, mall_phone, mall_website, mall_opening, mall_closing, mall_description, mall_photo_path) VALUES (:id, :name, :address, :phone, :website, :opening, :closing, :description, :photo)",
@@ -202,7 +215,7 @@ def admin_malls_new():
         opening = mall_opening,
         closing = mall_closing,
         description = mall_description,
-        photo = "../static/uploads/" + secure_filename(new_id + '.jpg'),
+        photo = mall_photo
         )
 
         # Finish

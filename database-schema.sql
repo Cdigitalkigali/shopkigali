@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS blog_posts(
     image_path TEXT,
     content TEXT
 );
-CREATE TABLE IF NOT EXISTS mall_lisitings(
+CREATE TABLE IF NOT EXISTS mall_listings(
     id INTEGER,
     mall_name TEXT,
     mall_address TEXT,
