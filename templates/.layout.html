@@ -8,11 +8,6 @@
 
 <!--Content-->
 {% block content %}
-{% if get_flashed_messages() %}
-<div style="margin-top: 80px; background-color: rgb(255, 187, 0); width: 100%; padding:10px; text-align: center;">
-  {{ get_flashed_messages() | join(" ") }}
-</div><br>
-{% endif %}
 <!--NAVBAR-->
 <nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">

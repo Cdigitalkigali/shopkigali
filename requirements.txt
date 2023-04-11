@@ -1,3 +1,5 @@
 Flask
+flask_session
+werkzeug
 cs50
 Gunicorn
