@@ -40,7 +40,9 @@ CREATE TABLE IF NOT EXISTS hotel_lisitings(
     hotel_website TEXT,
     hotel_opening TEXT,
     hotel_closing TEXT,
-    hotel_description TEXT
+    hotel_description TEXT,
+    hotel_photo_path TEXT,
+    hotel_popular INTEGER
 );
 CREATE TABLE IF NOT EXISTS restaurant_listings(
     id INTEGER,
@@ -50,5 +52,7 @@ CREATE TABLE IF NOT EXISTS restaurant_listings(
     restaurant_website TEXT,
     restaurant_opening TEXT,
     restaurant_closing TEXT,
-    restaurant_description TEXT
+    restaurant_description TEXT,
+    restaurant_photo_path TEXT,
+    restaurant_popular INTEGER
 );
