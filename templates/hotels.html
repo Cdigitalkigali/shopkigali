@@ -3,7 +3,7 @@
 
 <!-- tab title -->
 {% block name %}
-Hotels Centers In Kigali
+hotels and Shopping Centers In Kigali - ShopKigali
 {% endblock %}
 
 <!-- main content -->
@@ -11,81 +11,40 @@ Hotels Centers In Kigali
 <main class="double-column">
   <div class="content sub-column">
     <section>
-      <h3>Malls and Shopping Centers</h3>
+      <h3>Hotels</h3>
     </section>
     <section>
-      <a href="/mall">
-        <div class="card card-horizontal-2 card-large" style="width: 100%;">
-          <img src="https://pbs.twimg.com/media/E226GwZX0AIXH4B.jpg" class="card-img-left" width="50%" alt="...">
-          <div class="card-body">
-            <h4 class="card-title"><strong>Kigali Heights</strong></h4>
-            <p>NYARUTARAMA, KIGALI</p>
-            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet
-              consectetur adipisicing elit.
-              <br><br>
-              <span style="color: grey;"><i class="fa-solid fa-location-dot"></i> KG 7 Ave, Kigali</span><br>
-              <span style="color: grey;"><i class="fa-solid fa-globe"></i> www.kigaliheights.com </span><br>
-              <span style="color: grey;"><i class="fa-solid fa-phone"></i> 0732 000 216</span><br>
-              <span style="color: grey;"><i class="fa-solid fa-clock"></i> Closes 9pm</span><br>
-            </p>
-            <div class="rating">
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star"></span>
-              <span class="fa fa-star"></span>
-              <span>(22 Reveiws)</span>
+      {% if hotels|length == 0 %}
+      <p>Error loading hotels.</p>
+      {% else %}
+        {% for i in range(hotels|length) %}
+          <a href="/hotels-and-shopping-centers/{{ hotels[0]['id'] }}">
+            <div class="card card-horizontal-2 card-large" style="width: 100%;">
+              <img src="{{ hotels[i]['hotel_photo_path'] }}" class="card-img-left" width="50%" alt="...">
+              <div class="card-body">
+                <h4 class="card-title"><strong>{{ hotels[i]["hotel_name"] }}</strong></h4>
+                <p>{{ hotels[i]["hotel_address"] }}</p>
+                <p class="card-text">{{ hotels[i]["hotel_description"] }}
+                  <br><br>
+                  <span style="color: grey;"><i class="fa-solid fa-location-dot"></i> {{ hotels[i]["hotel_address"] }}</span><br>
+                  <span style="color: grey;"><i class="fa-solid fa-globe"></i> {{ hotels[i]["hotel_website"] }} </span><br>
+                  <span style="color: grey;"><i class="fa-solid fa-phone"></i> {{ hotels[i]["hotel_phone"] }} </span><br>
+                  <span style="color: grey;"><i class="fa-solid fa-clock"></i> {{ hotels[i]["hotel_opening"] }} - {{ hotels[i]["hotel_closing"] }} </span><br>
+                </p>
+                <div class="rating">
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star"></span>
+                  <span class="fa fa-star"></span>
+                  <span>(22 Reveiws)</span>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-      </a>
-      <div class="card card-horizontal-2 card-large" style="width: 100%;">
-        <img src="http://vibehouse.rw/wp-content/uploads/2019/06/Retail_Space_For_Rent_Kigali_19-05-09-1_13.jpg" class="card-img-left" width="50%" alt="...">
-        <div class="card-body">
-          <h4 class="card-title"><strong>Masterpeice Mall</strong></h4>
-          <p>NYARUTARAMA, KIGALI</p>
-          <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet
-            consectetur adipisicing elit.
-            <br><br>
-            <span style="color: grey;"><i class="fa-solid fa-location-dot"></i> KN 5 Rd, Kigali</span><br>
-            <span style="color: grey;"><i class="fa-solid fa-globe"></i> No website </span><br>
-            <span style="color: grey;"><i class="fa-solid fa-phone"></i> 0786 890 967</span><br>
-            <span style="color: grey;"><i class="fa-solid fa-clock"></i> Closes 9pm</span><br>
-          </p>
-          <div class="rating">
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
-            <span>(22 Reveiws)</span>
-          </div>
-        </div>
-      </div>
-      <div class="card card-horizontal-2 card-large" style="width: 100%;">
-        <img src="https://www.ktpress.rw/wp-content/uploads/2022/07/Silverback-Mall2.jpg" class="card-img-left" width="50%" alt="...">
-        <div class="card-body">
-          <h4 class="card-title"><strong>Silverback Mall</strong></h4>
-          <p>NYARUTARAMA, KIGALI</p>
-          <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet
-            consectetur adipisicing elit.
-            <br><br>
-            <span style="color: grey;"><i class="fa-solid fa-location-dot"></i> KN 5 Rd, Kigali</span><br>
-            <span style="color: grey;"><i class="fa-solid fa-globe"></i> No website </span><br>
-            <span style="color: grey;"><i class="fa-solid fa-phone"></i> 0786 890 967</span><br>
-            <span style="color: grey;"><i class="fa-solid fa-clock"></i> Closes 9pm</span><br>
-          </p>
-          <div class="rating">
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
-            <span>(22 Reveiws)</span>
-          </div>
-        </div>
-      </div>
-      <br>
+          </a>
+          <br>
+        {% endfor %}
+      {% endif %}
     </section>
   </div>
   <div class="ads sub-column">

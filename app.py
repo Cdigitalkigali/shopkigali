@@ -63,7 +63,13 @@ def restaurant(restaurant_id):
 
 @app.route("/hotels")
 def hotels():
-    return render_template("hotels.html")
+    hotels = db.execute("SELECT * FROM hotel_listings")
+    return render_template("hotels.html", hotels=hotels)
+
+@app.route("/hotels/<hotel_id>")
+def hotel(hotel_id):
+    hotel = db.execute("SELECT * FROM hotel_listings WHERE id = :id", id=hotel_id)
+    return render_template("hotel.html", hotel=hotel)
 
 @app.route("/blog")
 def blog():
@@ -282,3 +288,56 @@ def admin_restaurants_new():
         # Finish
         flash("Successfully Listed restaurant")
         return redirect("/admin/restaurant-listings")
+
+# hotels  ---------------------------------------------------------------------------------------
+@app.route("/admin/hotel-listings")
+def admin_hotels():
+    hotels = db.execute("SELECT * FROM hotel_listings")
+    return render_template("admin-hotel-listings.html", hotels=hotels)
+
+@app.route("/admin/hotel-listings/<hotel_id>")
+def admin_hotel_listing(hotel_id):
+    hotel = db.execute("SELECT * FROM hotel_listings WHERE id = :id", id=hotel_id)
+    return render_template("admin-hotel.html", hotel=hotel)
+
+
+@app.route("/admin/hotel-listings/new", methods=["GET", "POST"])
+def admin_hotels_new():
+    if request.method == "GET":
+        return render_template("admin-hotel-create.html")
+    else:
+        # Fetch hotel details
+        hotel_name = request.form.get("hotel_name")
+        hotel_address = request.form.get("hotel_address")
+        hotel_phone = request.form.get("hotel_phone")
+        hotel_website = request.form.get("hotel_website")
+        hotel_opening = request.form.get("hotel_opening")
+        hotel_closing = request.form.get("hotel_closing")
+        hotel_description = request.form.get("hotel_description")
+        hotel_photo = request.form.get("photo")
+
+        # Generate Unique ID
+        num = random.randrange(1, 10**7)
+        new_id = '{:07}'.format(num)
+
+        # Handle Uploaded Files
+        # photo = request.files['photo']
+        # photo.save(os.path.join(Config.UPLOAD_FOLDER, secure_filename(new_id + '_photo.jpg')))
+
+        # Write data into database
+        db.execute("INSERT INTO hotel_listings (id, hotel_name, hotel_address, hotel_phone, hotel_website, hotel_opening, hotel_closing, hotel_description, hotel_photo_path, hotel_popular) VALUES (:id, :name, :address, :phone, :website, :opening, :closing, :description, :photo, :hotel_popular)",
+        id = new_id,
+        name = hotel_name,
+        address = hotel_address,
+        phone = hotel_phone,
+        website = hotel_website,
+        opening = hotel_opening,
+        closing = hotel_closing,
+        description = hotel_description,
+        photo = hotel_photo,
+        hotel_popular = 0
+        )
+
+        # Finish
+        flash("Successfully Listed hotel")
+        return redirect("/admin/hotel-listings")
