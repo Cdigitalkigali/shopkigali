@@ -51,13 +51,19 @@ def mall(mall_id):
     mall = db.execute("SELECT * FROM mall_listings WHERE id = :id", id=mall_id)
     return render_template("mall.html", mall=mall)
 
+@app.route("/restaurants")
+def restaurants():
+    restaurants = db.execute("SELECT * FROM restaurant_listings")
+    return render_template("restaurants.html", restaurants=restaurants)
+
+@app.route("/restaurants/<restaurant_id>")
+def restaurant(restaurant_id):
+    restaurant = db.execute("SELECT * FROM restaurant_listings WHERE id = :id", id=restaurant_id)
+    return render_template("restaurant.html", restaurant=restaurant)
+
 @app.route("/hotels")
 def hotels():
     return render_template("hotels.html")
-
-@app.route("/restaurants")
-def restaurants():
-    return render_template("restaurants.html")
 
 @app.route("/blog")
 def blog():
@@ -171,6 +177,7 @@ def admin_contacts():
 def admin_listing_applications():
     return render_template("admin-listing-applications.html")
 
+# Malls        ---------------------------------------------------------------------------------------
 @app.route("/admin/mall-listings")
 def admin_malls():
     malls = db.execute("SELECT * FROM mall_listings")
@@ -185,7 +192,7 @@ def admin_mall_listing(mall_id):
 @app.route("/admin/mall-listings/new", methods=["GET", "POST"])
 def admin_malls_new():
     if request.method == "GET":
-        return render_template("admin-create-mall.html")
+        return render_template("admin-mall-create.html")
     else:
         # Fetch mall details
         mall_name = request.form.get("mall_name")
@@ -206,7 +213,7 @@ def admin_malls_new():
         # photo.save(os.path.join(Config.UPLOAD_FOLDER, secure_filename(new_id + '_photo.jpg')))
 
         # Write data into database
-        db.execute("INSERT INTO mall_listings (id, mall_name, mall_address, mall_phone, mall_website, mall_opening, mall_closing, mall_description, mall_photo_path) VALUES (:id, :name, :address, :phone, :website, :opening, :closing, :description, :photo)",
+        db.execute("INSERT INTO mall_listings (id, mall_name, mall_address, mall_phone, mall_website, mall_opening, mall_closing, mall_description, mall_photo_path, mall_popular) VALUES (:id, :name, :address, :phone, :website, :opening, :closing, :description, :photo, :mall_popular)",
         id = new_id,
         name = mall_name,
         address = mall_address,
@@ -215,9 +222,63 @@ def admin_malls_new():
         opening = mall_opening,
         closing = mall_closing,
         description = mall_description,
-        photo = mall_photo
+        photo = mall_photo,
+        mall_popular = 0
         )
 
         # Finish
         flash("Successfully Listed Mall")
         return redirect("/admin/mall-listings")
+
+# restaurants  ---------------------------------------------------------------------------------------
+@app.route("/admin/restaurant-listings")
+def admin_restaurants():
+    restaurants = db.execute("SELECT * FROM restaurant_listings")
+    return render_template("admin-restaurant-listings.html", restaurants=restaurants)
+
+@app.route("/admin/restaurant-listings/<restaurant_id>")
+def admin_restaurant_listing(restaurant_id):
+    restaurant = db.execute("SELECT * FROM restaurant_listings WHERE id = :id", id=restaurant_id)
+    return render_template("admin-restaurant.html", restaurant=restaurant)
+
+
+@app.route("/admin/restaurant-listings/new", methods=["GET", "POST"])
+def admin_restaurants_new():
+    if request.method == "GET":
+        return render_template("admin-restaurant-create.html")
+    else:
+        # Fetch restaurant details
+        restaurant_name = request.form.get("restaurant_name")
+        restaurant_address = request.form.get("restaurant_address")
+        restaurant_phone = request.form.get("restaurant_phone")
+        restaurant_website = request.form.get("restaurant_website")
+        restaurant_opening = request.form.get("restaurant_opening")
+        restaurant_closing = request.form.get("restaurant_closing")
+        restaurant_description = request.form.get("restaurant_description")
+        restaurant_photo = request.form.get("photo")
+
+        # Generate Unique ID
+        num = random.randrange(1, 10**7)
+        new_id = '{:07}'.format(num)
+
+        # Handle Uploaded Files
+        # photo = request.files['photo']
+        # photo.save(os.path.join(Config.UPLOAD_FOLDER, secure_filename(new_id + '_photo.jpg')))
+
+        # Write data into database
+        db.execute("INSERT INTO restaurant_listings (id, restaurant_name, restaurant_address, restaurant_phone, restaurant_website, restaurant_opening, restaurant_closing, restaurant_description, restaurant_photo_path, restaurant_popular) VALUES (:id, :name, :address, :phone, :website, :opening, :closing, :description, :photo, :restaurant_popular)",
+        id = new_id,
+        name = restaurant_name,
+        address = restaurant_address,
+        phone = restaurant_phone,
+        website = restaurant_website,
+        opening = restaurant_opening,
+        closing = restaurant_closing,
+        description = restaurant_description,
+        photo = restaurant_photo,
+        restaurant_popular = 0
+        )
+
+        # Finish
+        flash("Successfully Listed restaurant")
+        return redirect("/admin/restaurant-listings")

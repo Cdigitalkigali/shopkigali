@@ -1,0 +1,41 @@
+{% extends "admin-layout.html" %}
+
+{% block main %}
+<div style="width: 85%; padding: 20px;">
+    <h3><strong>
+            Restaurant Listings
+        </strong></h3>
+        <a href="/admin/restaurant-listings/new">
+            <button type="button" class="btn btn-primary btn-block mb-4">Create New Listing</button>
+        </a>
+    <br>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Image</th>
+                <th scope="col">Name</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        {% if restaurants|length == 0 %}
+            <p>No restaurants listed yet</p>
+        {% else %}
+            <tbody>
+                {% for i in range(restaurants|length) %}
+                    <tr>
+                        <th scope="row">{{ restaurants[i]["id"] }}</th>
+                        <td><img src="{{ restaurants[i]['restaurant_photo_path'] }}" alt="{{ restaurants[i]['restaurant_name'] }}" width="100px" height="auto"></td>
+                        <td>{{ restaurants[i]["restaurant_name"] }}</td>
+                        <td>
+                            <a href="/admin/restaurant-listings/{{ restaurants[i]['id'] }}">
+                                <button type="button" class="btn btn-primary btn-block mb-4">View</button>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        {% endif %}
+    </table>
+</div>
+{% endblock %}

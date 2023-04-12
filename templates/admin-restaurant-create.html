@@ -1,0 +1,45 @@
+{% extends "admin-layout.html" %}
+
+{% block main %}
+<div style="width: 85%; padding: 20px;">
+    <h3><strong>Add restaurant Listing</strong></h3>
+    <br>
+    <form action="/admin/restaurant-listings/new" method="POST">
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Name Of restaurant*</label>
+            <input required name="restaurant_name" type="text" class="form-control" placeholder="Name">
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">restaurant Address*</label>
+            <input required name="restaurant_address" type="text" class="form-control"
+                placeholder="Eg. #45, KN234 Rd, KN1 Avenue, Nayarutarama, Kigali.">
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">restaurant Phone Number</label>
+            <input name="restaurant_phone" type="text" class="form-control" placeholder="Eg. +250(0)787765432">
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">restaurant Website</label>
+            <input name="restaurant_website" type="text" class="form-control" placeholder="Eg. shopkigali.onrender.com">
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Opening Time</label>
+            <input name="restaurant_opening" type="text" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Closing Time</label>
+            <input name="restaurant_closing" type="text" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+            <textarea name="restaurant_description" class="form-control" rows="3"></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="formFileMultiple" class="form-label">Image Link</label>
+            <input name="photo" class="form-control" type="text">
+        </div>
+        <button type="submit" class="btn btn-primary btn-block mb-4">Create</button>
+    </form>
+
+</div>
+{% endblock %}

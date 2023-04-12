@@ -29,7 +29,8 @@ CREATE TABLE IF NOT EXISTS mall_listings(
     mall_opening TEXT,
     mall_closing TEXT,
     mall_description TEXT,
-    mall_photo_path TEXT
+    mall_photo_path TEXT,
+    mall_popular INTEGER
 );
 CREATE TABLE IF NOT EXISTS hotel_lisitings(
     id INTEGER,

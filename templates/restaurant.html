@@ -1,0 +1,235 @@
+<!-- homepage content -->
+{% extends ".layout.html" %}
+
+<!-- tab title -->
+{% block name %}
+restaurants and Shopping Centers In Kigali - ShopKigali
+{% endblock %}
+
+<!-- main content -->
+{% block main %}
+<main class="double-column">
+  <div class="content sub-column">
+    <section>
+        <div id="nohover" class="card card-horizontal-2 card-large" style="width: 100%; border: none;">
+            <img src="{{ restaurant[0]['restaurant_photo_path'] }}" class="card-img-left" width="50%" alt="...">
+            <div class="card-body">
+              <h4 class="card-title"><strong>{{ restaurant[0]["restaurant_name"] }}</strong></h4>
+              <p>{{ restaurant[0]["restaurant_address"] }}</p>
+              <p class="card-text">{{ restaurant[0]["restaurant_description"] }}
+                <br><br>
+                <span style="color: grey;"><i class="fa-solid fa-location-dot"></i>{{ restaurant[0]["restaurant_address"] }}</span><br>
+                <span style="color: grey;"><i class="fa-solid fa-globe"></i> {{ restaurant[0]["restaurant_website"] }} </span><br>
+                <span style="color: grey;"><i class="fa-solid fa-phone"></i> {{ restaurant[0]["restaurant_phone"] }} </span><br>
+                <span style="color: grey;"><i class="fa-solid fa-clock"></i> {{ restaurant[0]["restaurant_opening"] }} - {{ restaurant[0]["restaurant_closing"] }} </span><br>
+              </p>
+              <div class="rating">
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                <span>(22 Reveiws)</span>
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="accordion" id="accordionExample">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseOne">
+                Information
+              </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                <h4>Description</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d15949.721043214204!2d30.1329243!3d-1.982464!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2srw!4v1680711220069!5m2!1sen!2srw" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingThree">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseOne">
+                Reviews
+              </button>
+            </h2>
+            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                <div class="row text-center">
+                    <div class="col-md-12">
+                      <!-- Carousel wrapper -->
+                      <div id="carouselBasicExample" class="carousel slide carousel-dark" data-mdb-ride="carousel">
+                        <!-- Inner -->
+                        <div class="carousel-inner">
+                          <!-- Single item -->
+                          <div class="carousel-item active">
+                            <p class="lead font-italic mx-4 mx-md-5">
+                              "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit, error amet
+                              numquam iure provident voluptate esse quasi, voluptas nostrum quisquam!"
+                            </p>
+                            <p class="text-muted mb-0">- Anna Morian</p>
+                          </div>
+                
+                          <!-- Single item -->
+                          <div class="carousel-item">
+                            <p class="lead font-italic mx-4 mx-md-5">
+                              "Neque cupiditate assumenda in maiores repudiandae mollitia adipisci maiores
+                              repudiandae mollitia consectetur adipisicing architecto elit sed adipiscing
+                              elit."
+                            </p>
+                            <p class="text-muted mb-0">- Teresa May</p>
+                          </div>
+                
+                          <!-- Single item -->
+                          <div class="carousel-item">
+                            <p class="lead font-italic mx-4 mx-md-5">
+                              "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+                              dolore eu fugiat nulla pariatur est laborum neque cupiditate assumenda in
+                              maiores."
+                            </p>
+                            <p class="text-muted mb-0">- Kate Allise</p>
+                          </div>
+                        </div>
+                        <!-- Inner -->
+                
+                        <!-- Controls -->
+                        <button class="carousel-control-prev" type="button" data-mdb-target="#carouselBasicExample"
+                          data-mdb-slide="prev">
+                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                          <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-mdb-target="#carouselBasicExample"
+                          data-mdb-slide="next">
+                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                          <span class="visually-hidden">Next</span>
+                        </button>
+                      </div>
+                      <!-- Carousel wrapper -->
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
+        <br>
+        <br>
+        <h4>Shops In This restaurant</h4>
+        <div class="py-5">
+            <div class="container">
+              <div class="row hidden-md-up">
+                <div class="col-md-4">
+                  <div class="card">
+                    <img src="https://www.ktpress.rw/wp-content/uploads/2022/07/Silverback-restaurant2.jpg" class="card-img-top"
+              alt="...">
+                    <div class="card-block card-padding">
+                      <h4 class="card-title">Card title</h4>
+                      <h6 class="card-subtitle text-muted">Support card subtitle</h6>
+                      <p class="card-text p-y-1">Some quick example text to build on the card title .</p>
+                      <a href="#" class="card-link">link</a>
+                      <a href="#" class="card-link">Second link</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="card">
+                    <img src="https://www.ktpress.rw/wp-content/uploads/2022/07/Silverback-restaurant2.jpg" class="card-img-top"
+              alt="...">
+                    <div class="card-block card-padding">
+                      <h4 class="card-title">Card title</h4>
+                      <h6 class="card-subtitle text-muted">Support card subtitle</h6>
+                      <p class="card-text p-y-1">Some quick example text to build on the card title .</p>
+                      <a href="#" class="card-link">link</a>
+                      <a href="#" class="card-link">Second link</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="card">
+                    <img src="https://www.ktpress.rw/wp-content/uploads/2022/07/Silverback-restaurant2.jpg" class="card-img-top"
+              alt="...">
+                    <div class="card-block card-padding">
+                      <h4 class="card-title">Card title</h4>
+                      <h6 class="card-subtitle text-muted">Support card subtitle</h6>
+                      <p class="card-text p-y-1">Some quick example text to build on the card title .</p>
+                      <a href="#" class="card-link">link</a>
+                      <a href="#" class="card-link">Second link</a>
+                    </div>
+                  </div>
+                </div>
+              </div><br>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="card">
+                    <img src="https://www.ktpress.rw/wp-content/uploads/2022/07/Silverback-restaurant2.jpg" class="card-img-top"
+              alt="...">
+                    <div class="card-block card-padding">
+                      <h4 class="card-title">Card title</h4>
+                      <h6 class="card-subtitle text-muted">Support card subtitle</h6>
+                      <p class="card-text p-y-1">Some quick example text to build on the card title .</p>
+                      <a href="#" class="card-link">link</a>
+                      <a href="#" class="card-link">Second link</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="card">
+                    <img src="https://www.ktpress.rw/wp-content/uploads/2022/07/Silverback-restaurant2.jpg" class="card-img-top"
+              alt="...">
+                    <div class="card-block card-padding">
+                      <h4 class="card-title">Card title</h4>
+                      <h6 class="card-subtitle text-muted">Support card subtitle</h6>
+                      <p class="card-text p-y-1">Some quick example text to build on the card title .</p>
+                      <a href="#" class="card-link">link</a>
+                      <a href="#" class="card-link">Second link</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="card">
+                    <img src="https://pbs.twimg.com/media/FpnK3j6XwAEwBZJ.jpg" class="card-img-top"
+              alt="...">
+                    <div class="card-block card-padding">
+                      <h4 class="card-title">Card title</h4>
+                      <h6 class="card-subtitle text-muted">Support card subtitle</h6>
+                      <p class="card-text p-y-1">Some quick example text to build on the card title .</p>
+                      <a href="#" class="card-link">link</a>
+                      <a href="#" class="card-link">Second link</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+    </section>
+  </div>
+  <div class="ads sub-column">
+    <section style="height: 70vh;">
+      <p>Advertisement</p>
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-0847299184167787"
+        crossorigin="anonymous"></script>
+      <ins class="adsbygoogle" style="display:block" data-ad-format="autorelaxed"
+        data-ad-client="ca-pub-0847299184167787" data-ad-slot="9473987533"></ins>
+      <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </section>
+    <section>
+      <h5>Latest from the Blog</h5>
+      <br>
+      <div class="card card-blog card-small" style="width: 100%;">
+        <img
+          src="https://www.tripsavvy.com/thmb/RMnBKZ1aV6hfwFDea6MBsq5WdkI=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Rwanda_sambaza-0683660a807442318cf67decfa113e49.jpeg"
+          class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Taste the Flavors of Kigali: Exploring the Food Scene in Rwanda's Capital City</h5>
+          <p class="card-text">Kigali, the capital city of Rwanda, is known for its vibrant culture and breath-taking
+            scenery...</p>
+          <a href="#" class="btn btn-primary">Read More</a>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+{% endblock %}
