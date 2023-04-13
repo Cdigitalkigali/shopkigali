@@ -7,7 +7,8 @@ from werkzeug.exceptions import default_exceptions, HTTPException, InternalServe
 from werkzeug.utils import secure_filename
 from tempfile import gettempdir
 import os
-import random
+import random 
+from datetime import date 
 
 # Initialize App
 app = Flask(__name__)
@@ -34,8 +35,67 @@ app.config['ALLOWED_EXTENSIONS'] = ALLOWED_EXTENSIONS
 
 @app.route("/")
 def index():
+    session.clear()
     malls = db.execute("SELECT * FROM mall_listings")
-    return render_template("index.html", malls=malls)
+    restaurants = db.execute("SELECT * FROM restaurant_listings")
+    hotels = db.execute("SELECT * FROM hotel_listings")
+    blog = db.execute("SELECT * FROM blog_posts")
+
+    #if session:
+        #current_user = db.execute("SELECT * FROM users WHERE id = :id", id = session["user_id"])
+        #return render_template("index.html", malls=malls, hotels=hotels, restaurants=restaurants, user=current_user)
+    
+    return render_template("index.html", malls=malls, hotels=hotels, restaurants=restaurants, blog=blog)
+
+@app.route("/signup", methods=["POST"])
+def signup():
+    # Collect form data
+    name = request.form.get("name")
+    email = request.form.get("email")
+    password = request.form.get("password")
+    # Check if account already exists
+    check = db.execute("SELECT * FROM users WHERE email = :email", email=email)
+    if len(check) > 0:
+        flash("An account with that email already exists")
+        return redirect("/")
+    else:
+        # if account doesn't already exist, sign user up
+        db.execute("INSERT INTO users (username, email, password_hash) VALUES (:name, :email, :password)", 
+        name = name, 
+        email = email, 
+        password = generate_password_hash(password)
+        )
+        # log user in
+        current_user = db.execute("SELECT * FROM users WHERE email == :email", email=email)
+        session["user_id"] = current_user[0]["id"]
+        flash("Signed in successfully")
+        return redirect("/")
+
+@app.route("/login", methods=["POST"])
+def login():
+    # collect form data
+    email = request.form.get("email")
+    password = request.form.get("password")
+    # check if password and email is correct
+    check = db.execute("SELECT * FROM users WHERE email = :email", email=email)
+    if len(check) < 1:
+        flash("That account does not exist")
+        return redirect("/")
+    else:
+        if not check_password_hash(check[0]["password_hash"], password):
+            flash("Email or password is incorrect")
+            return redirect("/")
+        else:
+            # sign user in
+            session["user_id"] = check[0]["id"]
+            flash("Signed in successfully")
+            return redirect("/")
+
+@app.route("/logout")
+def logout():
+    session.clear()
+    flash("Logged out Successfully")
+    return redirect("/")
 
 @app.route("/about")
 def about():
@@ -73,7 +133,13 @@ def hotel(hotel_id):
 
 @app.route("/blog")
 def blog():
-    return render_template("blog.html")
+    blog = db.execute("SELECT * FROM blog_posts")
+    return render_template("blog.html", blog=blog)
+
+@app.route("/blog/<blog_id>")
+def blog_post(blog_id):
+    blog = db.execute("SELECT * FROM blog_posts WHERE id = :id", id=blog_id)
+    return render_template("blog-post.html", blog=blog)
 
 @app.route("/blog/food")
 def blog_food():
@@ -86,55 +152,6 @@ def blog_lifestyle():
 @app.route("/blog/fashion")
 def blog_fashion():
     return render_template("blog-fashion.html")
-
-
-
-@app.route("/signup", methods=["GET", "POST"])
-def signup():
-    if request.method == "GET":
-        return render_template("signup.html")
-    else:
-        email = request.form.get("email")
-        password = request.form.get("password")
-        password_confirmation = request.form.get("cpassword")
-
-        if not email or not password or not password_confirmation:
-            flash("please fill in all required fields")
-            return redirect("/signup")
-        else:
-            check = db.execute("SELECT * FROM users WHERE email = :email", email=email)
-            if len(check) != 0:
-                flash("An account with that email already exists")
-                return redirect("/signup")
-            else:
-                password_hash = generate_password_hash(password)
-                db.execute("INSERT INTO users (email, password_hash) VALUES (:email, :password_hash)", email=email, password_hash=password_hash)
-                session["user_id"] = db.execute("SELECT id FROM users WHERE email = :email", email=email)[0]
-                session["role"] = "user"
-                flash("Signed in successfully")
-                return redirect("/")
-
-@app.route("/login", methods=["GET", "POST"])
-def login():
-    if request.method == "GET":
-        return render_template("login.html")
-    else:
-        email == request.form.get("email")
-        password == request.form.get("password")
-        rowsusers = db.execute("SELECT * FROM users WHERE email = :email", email = email)
-        if len(rowsusers) == 1 and check_password_hash(rowsusers[0]["password_hash"], password):
-            session["user_id"] = rowsusers[0]["id"]
-            session["role"] = "user"
-            return redirect("/")
-        else:
-            flash("username or password is incorrect")
-            return redirect("/login")
-
-@app.route("/logout")
-def logout():
-    session.clear()
-    flash("Logged out Successfully")
-    return redirect("/")
 
 @app.route("/contact", methods=["GET", "POST"])
 def contact():
@@ -166,7 +183,7 @@ def admin():
         return render_template("/admin-login.html")
     else:
         password = request.form.get("password")
-        password_correct = "78945612"
+        password_correct = "7894561278945612"
         if password == password_correct:
             return redirect("/admin/contacts")
         else:
@@ -341,3 +358,32 @@ def admin_hotels_new():
         # Finish
         flash("Successfully Listed hotel")
         return redirect("/admin/hotel-listings")
+
+# Blog    -------------------------------------------------------------------------
+@app.route("/admin/blog")
+def admin_blog():
+    blog = db.execute("SELECT * FROM blog_posts")
+    return render_template("admin-blog-list.html", blog=blog)
+
+@app.route("/admin/blog/new", methods=["GET", "POST"])
+def admin_blog_new():
+    if request.method == "GET":
+        return render_template("admin-blog-create.html")
+    else:
+        title = request.form.get("title")
+        author = request.form.get("author")
+        content = request.form.get("content")
+        photo = request.form.get("photo")
+        category = request.form.get("category")
+
+        db.execute("INSERT INTO blog_posts (title, posted, author, image_path, content, category) VALUES (:title, :posted, :author, :image_path, :content, :category)",
+        title = title,
+        posted = date.today(),
+        author = author,
+        image_path = photo,
+        content = content,
+        category = category
+        )
+
+        flash("Blog published successfully")
+        return redirect("/")

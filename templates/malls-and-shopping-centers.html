@@ -17,33 +17,36 @@ Malls and Shopping Centers In Kigali - ShopKigali
       {% if malls|length == 0 %}
       <p>Error loading Malls.</p>
       {% else %}
-        {% for i in range(malls|length) %}
-          <a href="/malls-and-shopping-centers/{{ malls[0]['id'] }}">
-            <div class="card card-horizontal-2 card-large" style="width: 100%;">
-              <img src="{{ malls[i]['mall_photo_path'] }}" class="card-img-left" width="50%" alt="...">
-              <div class="card-body">
-                <h4 class="card-title"><strong>{{ malls[i]["mall_name"] }}</strong></h4>
-                <p>{{ malls[i]["mall_address"] }}</p>
-                <p class="card-text">{{ malls[i]["mall_description"] }}
-                  <br><br>
-                  <span style="color: grey;"><i class="fa-solid fa-location-dot"></i> {{ malls[i]["mall_address"] }}</span><br>
-                  <span style="color: grey;"><i class="fa-solid fa-globe"></i> {{ malls[i]["mall_website"] }} </span><br>
-                  <span style="color: grey;"><i class="fa-solid fa-phone"></i> {{ malls[i]["mall_phone"] }} </span><br>
-                  <span style="color: grey;"><i class="fa-solid fa-clock"></i> {{ malls[i]["mall_opening"] }} - {{ malls[i]["mall_closing"] }} </span><br>
-                </p>
-                <div class="rating">
-                  <span class="fa fa-star checked"></span>
-                  <span class="fa fa-star checked"></span>
-                  <span class="fa fa-star checked"></span>
-                  <span class="fa fa-star"></span>
-                  <span class="fa fa-star"></span>
-                  <span>(22 Reveiws)</span>
-                </div>
-              </div>
+      {% for i in range(malls|length) %}
+      <a href="/malls-and-shopping-centers/{{ malls[0]['id'] }}">
+        <div class="card card-horizontal-2 card-large" style="width: 100%;">
+          <img src="{{ malls[i]['mall_photo_path'] }}" class="card-img-left" width="50%" alt="...">
+          <div class="card-body">
+            <h4 class="card-title"><strong>{{ malls[i]["mall_name"] }}</strong></h4>
+            <p>{{ malls[i]["mall_address"] }}</p>
+            <p class="card-text" style="max-height: 10ch; overflow: hidden; text-overflow: ellipsis;">
+              {{ malls[i]["mall_description"] }} ...
+            </p>
+            <span style="color: grey;"><i class="fa-solid fa-location-dot"></i> {{ malls[i]["mall_address"]
+              }}</span><br>
+            <span style="color: grey;"><i class="fa-solid fa-globe"></i> {{ malls[i]["mall_website"] }} </span><br>
+            <span style="color: grey;"><i class="fa-solid fa-phone"></i> {{ malls[i]["mall_phone"] }} </span><br>
+            <span style="color: grey;"><i class="fa-solid fa-clock"></i> {{ malls[i]["mall_opening"] }} - {{
+              malls[i]["mall_closing"] }} </span><br>
+            </p>
+            <div class="rating">
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star"></span>
+              <span class="fa fa-star"></span>
+              <span>(22 Reveiws)</span>
             </div>
-          </a>
-          <br>
-        {% endfor %}
+          </div>
+        </div>
+      </a>
+      <br>
+      {% endfor %}
       {% endif %}
     </section>
   </div>

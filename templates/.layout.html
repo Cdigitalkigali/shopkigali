@@ -56,17 +56,97 @@
         </li>
       </ul>
       <div class="d-flex">
-        {% if session.id %}
-        <p>Welcome {{ user[0]["email"] }}</p>
-        <a class="nav-link" href="/logout"><button type="button" class="btn btn-primary">Sign Up</button></a>
+        {% if session.user_id %}
+        <li class="nav-item dropdown">
+          <a href="/blog" class="nav-link">
+            {{ user[0]["username"] }} <i class="fa-solid fa-angle-down"></i>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/">Profile</a></li>
+            <li><a class="dropdown-item" href="/">My ShopKigali</a></li>
+            <li><a class="dropdown-item" href="/logout">Logout</a></li>
+          </ul>
+        </li>
         {% else %}
-        <a class="nav-link" href="/signup"><button type="button" class="btn btn-primary">Sign Up</button></a>
-        <a class="nav-link" href="/login"><button type="button" class="btn btn-outline-primary">Login</button></a>
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#sModal">
+            Sign Up
+          </button>
+          <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#lModal">
+            Login
+          </button>
         {% endif %}
       </div>
     </div>
   </div>
 </nav>
+<!-- Signup Modal -->
+<div class="modal fade" id="sModal" tabindex="-1" aria-labelledby="sModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <img src="../static/images/logo.png" alt="SHOPKigali" width="auto" height="50">
+        <h3 class="modal-title" id="exampleModalLabel">Sign Up</h3>
+        <br>
+        <form method="POST" action="/signup">
+          <div class="form-outline mb-1">
+            <input name="name" type="text" id="form3Example1cg" class="form-control form-control" />
+            <label class="form-label" for="form3Example1cg">Your Name</label>
+          </div>
+          <div class="form-outline mb-1">
+            <input name="email" type="email" id="form3Example3cg" class="form-control form-control" />
+            <label class="form-label" for="form3Example3cg">Email</label>
+          </div>
+          <div class="form-outline mb-1">
+            <input name="password" type="password" id="form3Example4cg" class="form-control form-control" />
+            <label class="form-label" for="form3Example4cg">Password</label>
+          </div>
+          <div class="form-outline mb-1">
+            <input name="cpassword" type="password" id="form3Example4cdg" class="form-control form-control" />
+            <label class="form-label" for="form3Example4cdg">Confirm password</label>
+          </div>
+          <div class="form-check d-flex mb-5">
+            <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3cg"
+              style="width: 15px; height: 15px;" />
+            <label class="form-check-label" for="form2Example3g">
+              I agree all statements in <a href="#!" class="text-body"><u>Terms of service</u></a>
+            </label>
+          </div>
+          <div class="d-flex justify-content-center">
+            <button type="submit" class="btn btn-primary">Sign Up</button>
+          </div>
+          <p class="text-center text-muted mt-1 mb-0">Have already an account? <a href="#!"
+              class="fw-bold text-body"><u>Login here</u></a></p>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Login Modal -->
+<div class="modal fade" id="lModal" tabindex="-1" aria-labelledby="lModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <h3 class="modal-title" id="exampleModalLabel">Login</h3>
+        <br>
+        <form action="/login" method="POST">
+          <div class="form-outline mb-1">
+            <input type="email" id="form3Example3cg" class="form-control form-control" />
+            <label name="email" class="form-label" for="form3Example3cg">Email</label>
+          </div>
+          <div class="form-outline mb-1">
+            <input type="password" id="form3Example4cg" class="form-control form-control" />
+            <label name="password" class="form-label" for="form3Example4cg">Password</label>
+          </div>
+          <div class="d-flex justify-content-center">
+            <button type="button" class="btn btn-primary">Login</button>
+          </div>
+          <p class="text-center text-muted mt-1 mb-0">No Account? <a href="#!" class="fw-bold text-body"><u>Sign
+                Up</u></a></p>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 
 {% block main %}{% endblock %}
 <!-- Site footer -->

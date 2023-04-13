@@ -1,8 +1,8 @@
 CREATE TABLE IF NOT EXISTS users(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
+    username TEXT,
     email TEXT,
     password_hash TEXT,
-    display_name TEXT,
     pfp_path TEXT
 );
 CREATE TABLE IF NOT EXISTS contacts(
@@ -18,7 +18,8 @@ CREATE TABLE IF NOT EXISTS blog_posts(
     posted TEXT,
     author TEXT,
     image_path TEXT,
-    content TEXT
+    content TEXT,
+    category TEXT
 );
 CREATE TABLE IF NOT EXISTS mall_listings(
     id INTEGER,
@@ -32,7 +33,7 @@ CREATE TABLE IF NOT EXISTS mall_listings(
     mall_photo_path TEXT,
     mall_popular INTEGER
 );
-CREATE TABLE IF NOT EXISTS hotel_lisitings(
+CREATE TABLE IF NOT EXISTS hotel_listings(
     id INTEGER,
     hotel_name TEXT,
     hotel_address TEXT,

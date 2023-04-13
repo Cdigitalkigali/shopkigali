@@ -18,7 +18,7 @@ restaurants and Shopping Centers In Kigali - ShopKigali
       <p>Error loading restaurants.</p>
       {% else %}
         {% for i in range(restaurants|length) %}
-          <a href="/restaurants-and-shopping-centers/{{ restaurants[0]['id'] }}">
+          <a href="/restaurants/{{ restaurants[0]['id'] }}">
             <div class="card card-horizontal-2 card-large" style="width: 100%;">
               <img src="{{ restaurants[i]['restaurant_photo_path'] }}" class="card-img-left" width="50%" alt="...">
               <div class="card-body">

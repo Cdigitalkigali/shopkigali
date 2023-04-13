@@ -11,30 +11,15 @@ Blog
 <main class="double-column">
     <div class="content sub-column">
         <section>
-            <h5>Blog</h5>
-        </section>
-        <section>
-            {% if blog|length == 0%}
-            <p>No Blog Posts!</p>
-            {% else %}
-            {% for i in range(blog|length) %}
-            <div class="card card-large" style="width: 100%;">
-                <img src="{{ blog[i]['image_path'] }}" class="card-img" alt="...">
-                <div class="card-body">
-                    <h1 class="card-title"><strong>{{ blog[i]["title"] }}</strong></h1>
-                    <p>{{ blog[i]["category"] }}</p>
-                    <p class="card-text">
-                    <p class="card-text" style="max-height: 12ch; overflow: hidden; text-overflow: ellipsis;">
-                        {{ blog[i]["content"] }}
-                        ...
-                    </p>
-                    </p>
-                    <a href="/blog/{{ blog[i]['id'] }}" class="btn btn-primary">Read More</a>
-                </div>
-            </div>
-            <br>
-            {% endfor %}
-            {% endif %}
+            <h1>{{ blog[0]["title"] }}</h1>
+            <p> {{ blog[0]["category"] }} </p>
+            <p>Published on {{ blog[0]["posted"] }} by {{ blog[0]["author"] }}</p>
+            <img src="{{ blog[0]['image_path'] }}" alt="{{ blog[0]['title'] }}" width="100%" height="auto">
+            <aside id="markdown" style="display: none;">
+                {{ blog[0]["content"] }}
+            </aside>
+            <br><br><br>
+            <div id="output-html"></div>
         </section>
     </div>
     <div class="ads sub-column">

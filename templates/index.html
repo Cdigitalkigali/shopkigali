@@ -17,50 +17,51 @@ Homepage
 </div>
 <main class="double-column">
   <div class="content sub-column">
-    <section><div class="arrow" style="background-color: white; padding: 20px; float: right; font-size: 20px; position: relative; top: 200px;">></div>
+    <section>
+      <div class="arrow"
+        style="background-color: white; padding: 20px; float: right; font-size: 20px; position: relative; top: 200px;">>
+      </div>
       <h5><strong>Malls and Shopping Centers in Kigali</strong></h5>
       <br>
       <div class="scrolling-wrapper row flex-row flex-nowrap  pb-4 pt-2">
         {% if malls|length == 0%}
         <p>Error Loading Malls</p>
         {% else %}
-          {% for i in range(malls|length) %}
-              <div class="col-5">
-                <a href="/malls-and-shopping-centers/{{ malls[i]['id'] }}">
-                <div class="card card-vertical card-block card-1">
-                  <img src="{{ malls[i]['mall_photo_path'] }}" class="card-img-top" alt="...">
-                  <div class="card-body">
-                    {% if malls[0]["mall_popular"] == 1 %}
-                    <p
-                      style="background-color: gold; color: white; border-radius: 10px; padding: 2px 5px; width: 50%; text-align: center;">
-                      Popular
-                    </p>
-                    {% else %}
-                    {% endif %}
-                    <h5 class="card-title">{{ malls[i]["mall_name"] }}</h5>
-                    <p 
-                      class="card-text"
-                      style="max-height: 7ch; overflow: hidden; text-overflow: ellipsis;">
-                      {{ malls[i]["mall_description"] }}
-                    </p>
-                    <div class="rating">
-                      <span class="fa fa-star checked"></span>
-                      <span class="fa fa-star checked"></span>
-                      <span class="fa fa-star checked"></span>
-                      <span class="fa fa-star"></span>
-                      <span class="fa fa-star"></span>
-                      <span>(22 Reveiws)</span>
-                    </div>
-                  </div>
+        {% for i in range(malls|length) %}
+        <div class="col-5">
+          <a href="/malls-and-shopping-centers/{{ malls[i]['id'] }}">
+            <div class="card card-vertical card-block card-1">
+              <img src="{{ malls[i]['mall_photo_path'] }}" class="card-img-top" alt="...">
+              <div class="card-body">
+                {% if malls[0]["mall_popular"] == 1 %}
+                <p
+                  style="background-color: gold; color: white; border-radius: 10px; padding: 2px 5px; width: 50%; text-align: center;">
+                  Popular
+                </p>
+                {% else %}
+                {% endif %}
+                <h5 class="card-title">{{ malls[i]["mall_name"] }}</h5>
+                <p class="card-text" style="max-height: 12ch; overflow: hidden; text-overflow: ellipsis;">
+                  {{ malls[i]["mall_description"] }} ...
+                </p>
+                <div class="rating">
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star"></span>
+                  <span class="fa fa-star"></span>
+                  <span>(22 Reveiws)</span>
                 </div>
-                </a>
               </div>
-          {% endfor %}
-          <div class="col-5">
-            <div class="card card-block card-1" style="display: flex; justify-content: center; align-items: center;">
-              <h3>See All</h3>
             </div>
+          </a>
+        </div>
+        {% endfor %}
+        <div class="col-5">
+          <div class="card card-block card-1" style="display: flex; justify-content: center; align-items: center;">
+            <h3>See All</h3>
           </div>
+        </div>
         {% endif %}
       </div>
     </section>
@@ -71,39 +72,37 @@ Homepage
       <h5><strong>Popular Restaurants Near You</strong></h5>
       <br>
       <div class="scrolling-wrapper row flex-row flex-nowrap  pb-4 pt-2">
-        {% if restaurants|length == 0%}
+        {% if restaurants|length == 0 %}
         <p>Error Loading Restaurants</p>
         {% else %}
-          {% for i in range(restaurants|length) %}
-              <div class="col-5">
-                <a href="/restaurants/{{ restaurants[i]['id'] }}">
-                <div class="card card-vertical card-block card-1">
-                  <img src="{{ restaurants[i]['restaurant_photo_path'] }}" class="card-img-top" alt="...">
-                  <div class="card-body">
-                    <h5 class="card-title">{{ restaurants[i]["restaurant_name"] }}</h5>
-                    <p 
-                      class="card-text"
-                      style="max-height: 7ch; overflow: hidden; text-overflow: ellipsis;">
-                      {{ restaurants[i]["restaurant_description"] }}
-                    </p>
-                    <div class="rating">
-                      <span class="fa fa-star checked"></span>
-                      <span class="fa fa-star checked"></span>
-                      <span class="fa fa-star checked"></span>
-                      <span class="fa fa-star"></span>
-                      <span class="fa fa-star"></span>
-                      <span>(22 Reveiws)</span>
-                    </div>
-                  </div>
+        {% for i in range(restaurants|length) %}
+        <div class="col-5">
+          <a href="/restaurants/{{ restaurants[i]['id'] }}">
+            <div class="card card-vertical card-block card-1">
+              <img src="{{ restaurants[i]['restaurant_photo_path'] }}" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">{{ restaurants[i]["restaurant_name"] }}</h5>
+                <p class="card-text" style="max-height: 7ch; overflow: hidden; text-overflow: ellipsis;">
+                  {{ restaurants[i]["restaurant_description"] }}
+                </p>
+                <div class="rating">
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star"></span>
+                  <span class="fa fa-star"></span>
+                  <span>(22 Reveiws)</span>
                 </div>
-                </a>
               </div>
-          {% endfor %}
-          <div class="col-5">
-            <div class="card card-block card-1" style="display: flex; justify-content: center; align-items: center;">
-              <h3>See All</h3>
             </div>
+          </a>
+        </div>
+        {% endfor %}
+        <div class="col-5">
+          <div class="card card-block card-1" style="display: flex; justify-content: center; align-items: center;">
+            <h3>See All</h3>
           </div>
+        </div>
         {% endif %}
       </div>
     </section>
@@ -114,36 +113,34 @@ Homepage
         {% if hotels|length == 0%}
         <p>Error Loading hotels</p>
         {% else %}
-          {% for i in range(hotels|length) %}
-              <div class="col-5">
-                <a href="/hotels/{{ hotels[i]['id'] }}">
-                <div class="card card-vertical card-block card-1">
-                  <img src="{{ hotels[i]['hotel_photo_path'] }}" class="card-img-top" alt="...">
-                  <div class="card-body">
-                    <h5 class="card-title">{{ hotels[i]["hotel_name"] }}</h5>
-                    <p 
-                      class="card-text"
-                      style="max-height: 7ch; overflow: hidden; text-overflow: ellipsis;">
-                      {{ hotels[i]["hotel_description"] }}
-                    </p>
-                    <div class="rating">
-                      <span class="fa fa-star checked"></span>
-                      <span class="fa fa-star checked"></span>
-                      <span class="fa fa-star checked"></span>
-                      <span class="fa fa-star"></span>
-                      <span class="fa fa-star"></span>
-                      <span>(22 Reveiws)</span>
-                    </div>
-                  </div>
+        {% for i in range(hotels|length) %}
+        <div class="col-5">
+          <a href="/hotels/{{ hotels[i]['id'] }}">
+            <div class="card card-vertical card-block card-1">
+              <img src="{{ hotels[i]['hotel_photo_path'] }}" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">{{ hotels[i]["hotel_name"] }}</h5>
+                <p class="card-text" style="max-height: 7ch; overflow: hidden; text-overflow: ellipsis;">
+                  {{ hotels[i]["hotel_description"] }}
+                </p>
+                <div class="rating">
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star checked"></span>
+                  <span class="fa fa-star"></span>
+                  <span class="fa fa-star"></span>
+                  <span>(22 Reveiws)</span>
                 </div>
-                </a>
               </div>
-          {% endfor %}
-          <div class="col-5">
-            <div class="card card-block card-1" style="display: flex; justify-content: center; align-items: center;">
-              <h3>See All</h3>
             </div>
+          </a>
+        </div>
+        {% endfor %}
+        <div class="col-5">
+          <div class="card card-block card-1" style="display: flex; justify-content: center; align-items: center;">
+            <h3>See All</h3>
           </div>
+        </div>
         {% endif %}
       </div>
     </section>
@@ -205,29 +202,34 @@ Homepage
     <section>
       <h5>Latest from the Blog</h5>
       <br>
+      {% if blog|length == 0 %}
+      <p>No posts to show</p>
+      {% else %}
       <div class="card card-blog card-small" style="width: 100%;">
-        <img
-          src="https://www.tripsavvy.com/thmb/RMnBKZ1aV6hfwFDea6MBsq5WdkI=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Rwanda_sambaza-0683660a807442318cf67decfa113e49.jpeg"
-          class="card-img-top" alt="...">
+        <img src="{{ blog[-1]['image_path'] }}" class="card-img-top" alt="{{ blog[-1]['title'] }}">
         <div class="card-body">
-          <h5 class="card-title">Taste the Flavors of Kigali: Exploring the Food Scene in Rwanda's Capital City</h5>
-          <p class="card-text">Kigali, the capital city of Rwanda, is known for its vibrant culture and breath-taking
-            scenery...</p>
-          <a href="#" class="btn btn-primary">Read More</a>
+          <h5 class="card-title">{{ blog[-1]['image_title'] }}</h5>
+          <p class="card-text" style="max-height: 7ch; overflow: hidden; text-overflow: ellipsis;">
+            {{ blog[-1]["content"] }}
+          </p>
+          <a href="/blog/{{ blog[-1]['id'] }}" class="btn btn-primary">Read More</a>
         </div>
       </div>
       <br>
+      {% if blog|length > 1 %}
       <div class="card card-blog card-small" style="width: 100%;">
-        <img
-          src="https://www.tripsavvy.com/thmb/RMnBKZ1aV6hfwFDea6MBsq5WdkI=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Rwanda_sambaza-0683660a807442318cf67decfa113e49.jpeg"
-          class="card-img-top" alt="...">
+        <img src="{{ blog[-2]['image_path'] }}" class="card-img-top" alt="{{ blog[-2]['title'] }}" style="height: 500px !important;">
         <div class="card-body">
-          <h5 class="card-title">Taste the Flavors of Kigali: Exploring the Food Scene in Rwanda's Capital City</h5>
-          <p class="card-text">Kigali, the capital city of Rwanda, is known for its vibrant culture and breath-taking
-            scenery...</p>
-          <a href="#" class="btn btn-primary">Read More</a>
+          <h5 class="card-title">{{ blog[-2]['image_title'] }}</h5>
+          <p class="card-text" style="max-height: 7ch; overflow: hidden; text-overflow: ellipsis;">
+            {{ blog[-2]["content"] }}
+          </p>
+          <a href="/blog/{{ blog[-2]['id'] }}" class="btn btn-primary">Read More</a>
         </div>
       </div>
+      <br>
+      {% endif %}
+      {% endif %}
     </section>
     <section style="height: 120vh;">
       <p>Advertisement</p>
