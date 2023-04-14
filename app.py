@@ -15,13 +15,13 @@ app = Flask(__name__)
 # Initialize Database
 db = SQL("sqlite:///database.db")
 dbinit()
-# Define flask_session config
+# flask_session config
 app.config["SESSION_FILE_DIR"] = gettempdir()
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 app.config["SECRET_KEY"] = "789/456/127/894/561/278ssa94/5ds6a1s2"
 Session(app)
-# File upload config
+# file upload config
 basedir = os.path.abspath(os.path.dirname(__file__))
 UPLOAD_FOLDER = os.path.join(basedir, 'static/uploads')
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
@@ -29,11 +29,12 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['ALLOWED_EXTENSIONS'] = ALLOWED_EXTENSIONS
 
 
-## ---------------------------------------------------------- 
+## --------------------------------------------------------------------------------------------------------------------
 ## Customer-interface of the site
-## ----------------------------------------------------------
+## --------------------------------------------------------------------------------------------------------------------
 
-@app.route("/")
+# -------------------- HOMEPAGE -------------------- #
+@app.route("/") 
 def index():
     session.clear()
     malls = db.execute("SELECT * FROM mall_listings")
@@ -47,6 +48,14 @@ def index():
     
     return render_template("index.html", malls=malls, hotels=hotels, restaurants=restaurants, blog=blog)
 
+# -------------------- SUBSCRIPTION FORM -------------------- #
+@app.route("/sub", methods=["POST"])
+def sub():
+    email = request.form.get("email")
+    db.execute("INSERT INTO subs (email) VALUES (:email)", email=email)
+    return redirect("/")
+
+# -------------------- SIGNUP -------------------- #
 @app.route("/signup", methods=["POST"])
 def signup():
     # Collect form data
@@ -71,6 +80,7 @@ def signup():
         flash("Signed in successfully")
         return redirect("/")
 
+# -------------------- LOGIN -------------------- #
 @app.route("/login", methods=["POST"])
 def login():
     # collect form data
@@ -91,26 +101,30 @@ def login():
             flash("Signed in successfully")
             return redirect("/")
 
+# -------------------- LOGOUT -------------------- #
 @app.route("/logout")
 def logout():
     session.clear()
     flash("Logged out Successfully")
     return redirect("/")
 
+# -------------------- ABOUT -------------------- #
 @app.route("/about")
 def about():
     return render_template("about.html")
 
+# -------------------- MALLS -------------------- #
 @app.route("/malls-and-shopping-centers")
 def malls_and_shopping_centers():
     malls = db.execute("SELECT * FROM mall_listings")
     return render_template("malls-and-shopping-centers.html", malls=malls)
 
-@app.route("/malls-and-shopping-centers/<mall_id>")
+@app.route("/malls-and-shopping-centers/<mall_id>") # Individual mall
 def mall(mall_id):
     mall = db.execute("SELECT * FROM mall_listings WHERE id = :id", id=mall_id)
     return render_template("mall.html", mall=mall)
 
+# -------------------- RESTAURANTS -------------------- #
 @app.route("/restaurants")
 def restaurants():
     restaurants = db.execute("SELECT * FROM restaurant_listings")
@@ -121,6 +135,7 @@ def restaurant(restaurant_id):
     restaurant = db.execute("SELECT * FROM restaurant_listings WHERE id = :id", id=restaurant_id)
     return render_template("restaurant.html", restaurant=restaurant)
 
+# -------------------- HOTELS -------------------- #
 @app.route("/hotels")
 def hotels():
     hotels = db.execute("SELECT * FROM hotel_listings")
@@ -131,6 +146,7 @@ def hotel(hotel_id):
     hotel = db.execute("SELECT * FROM hotel_listings WHERE id = :id", id=hotel_id)
     return render_template("hotel.html", hotel=hotel)
 
+# -------------------- BLOG -------------------- #
 @app.route("/blog")
 def blog():
     blog = db.execute("SELECT * FROM blog_posts")
@@ -153,6 +169,13 @@ def blog_lifestyle():
 def blog_fashion():
     return render_template("blog-fashion.html")
 
+# -------------------- CLASSIFIEDS -------------------- #
+@app.route("/classifieds")
+def classifieds():
+    return render_template("classifieds.html")
+
+
+# -------------------- CONTACT -------------------- #
 @app.route("/contact", methods=["GET", "POST"])
 def contact():
     if request.method == "GET":
@@ -165,6 +188,7 @@ def contact():
         flash("Message submitted successfully")
         return redirect("/")
 
+# -------------------- OTHER PAGES -------------------- #
 @app.route("/terms")
 def terms():
     return render_template("terms.html")
@@ -387,3 +411,8 @@ def admin_blog_new():
 
         flash("Blog published successfully")
         return redirect("/")
+
+@app.route("/admin/subs")
+def admin_subs():
+    subs = db.execute("SELECT * FROM subs")
+    return render_template("admin-subs.html", subs=subs)

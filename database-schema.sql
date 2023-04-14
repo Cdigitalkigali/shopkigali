@@ -57,3 +57,8 @@ CREATE TABLE IF NOT EXISTS restaurant_listings(
     restaurant_photo_path TEXT,
     restaurant_popular INTEGER
 );
+
+CREATE TABLE IF NOT EXISTS subs(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    email TEXT
+);

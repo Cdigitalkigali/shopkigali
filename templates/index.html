@@ -23,6 +23,7 @@ Homepage
       </div>
       <h5><strong>Malls and Shopping Centers in Kigali</strong></h5>
       <br>
+      <div id="button-left" onclick="scrollLft()"><i class="fa-solid fa-arrow-left"></i></div>
       <div class="scrolling-wrapper row flex-row flex-nowrap  pb-4 pt-2">
         {% if malls|length == 0%}
         <p>Error Loading Malls</p>
@@ -64,6 +65,7 @@ Homepage
         </div>
         {% endif %}
       </div>
+      <div id="button-right" onclick="scrollRight()"><i class="fa-solid fa-arrow-right"></i></div>
     </section>
     <section style="height: 300px;">
       <p>Advertisement</p>
@@ -191,11 +193,14 @@ Homepage
         <div class="subscribe-form">
           <h5><strong>Subscribe to ShopKigali and never miss a new update</strong></h5>
           <br>
-          <div class="subscribe-input-group">
-            <input type="email" class="form-control" placeholder="Enter your email">
-            <span class="subscribe-input-group-btn">
-              <button class="btn btn-primary" type="submit" style="width: 100%; margin-top: 5px;">Subscribe</button>
-            </span>
+          <div class="">
+            <form action="/sub" method="POST">
+              <input name="email" type="email" class="form-control" placeholder="Enter your email">
+              <span class="subscribe-input-group-btn">
+                <button class="btn btn-primary" type="submit" style="width: 100%; margin-top: 5px;">Subscribe</button>
+              </span>
+            </form>
+
           </div>
         </div>
     </section>
@@ -218,7 +223,8 @@ Homepage
       <br>
       {% if blog|length > 1 %}
       <div class="card card-blog card-small" style="width: 100%;">
-        <img src="{{ blog[-2]['image_path'] }}" class="card-img-top" alt="{{ blog[-2]['title'] }}" style="height: 500px !important;">
+        <img src="{{ blog[-2]['image_path'] }}" class="card-img-top" alt="{{ blog[-2]['title'] }}"
+          style="height: 500px !important;">
         <div class="card-body">
           <h5 class="card-title">{{ blog[-2]['image_title'] }}</h5>
           <p class="card-text" style="max-height: 7ch; overflow: hidden; text-overflow: ellipsis;">
