@@ -8,7 +8,78 @@ Malls and Shopping Centers In Kigali - ShopKigali
 
 <!-- main content -->
 {% block main %}
-<main class="double-column" style="min-height: 50vh">
-  
+<main class="cl">
+    <div class="cl-header">
+        <div class="cl-header-top">
+            <h2 class="cl-title">Classifieds</h2>
+            <p class="cl-showing">Showing 1-50 Results</p>
+        </div>
+        <hr>
+        <div class="cl-header-bottom">
+            <div class="cl-notify form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                    Notify me when new listings are made
+                </label>
+            </div>
+            <div class="cl-sort">
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>Newest</option>
+                    <option value="1">Oldest</option>
+                    <option value="2">Lowest Price</option>
+                    <option value="3">Heighest Price</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <br>
+    <section style="position: relative;" class="cl-featured">
+        <h5 style="color: gold;">Featured Listings</h5><br>
+        <div class="cl-featured-listings">
+            <a href="" class="cl-featured-card-container">
+                <div class="cl-featured-card">
+                    <img class="cl-featured-card-image" src="https://media.kijiji.ca/api/v1/ca-prod-fsbo-ads/images/b7/b77ed156-545d-4134-b067-4598026d44c9?rule=kijijica-200-webp" alt="image">
+                    <div class="cl-featured-card-content">
+                        <div>
+                            <p class="cl-featured-card-info">Listed 10 hours ago by Muhanda Works</p>
+                            <h4 class="cl-featured-card-title">Surface 604 V Rook NOW IN STOCK!!</h4>
+                            <h6 class="cl-featured-card-price">RWF 45,600</h6>
+                        </div>
+                        <p class="cl-featured-card-desc">This is the item description Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae repellendus numquam nemo quos nostrum quis perferendis!</p>
+                    </div>
+                </div>
+            </a>
+            <a href="" class="cl-featured-card-container">
+                <div class="cl-featured-card">
+                    <img class="cl-featured-card-image" src="https://media.kijiji.ca/api/v1/ca-prod-fsbo-ads/images/b7/b77ed156-545d-4134-b067-4598026d44c9?rule=kijijica-200-webp" alt="image">
+                    <div class="cl-featured-card-content">
+                        <div>
+                            <p class="cl-featured-card-info">Listed 10 hours ago by Muhanda Works</p>
+                            <h4 class="cl-featured-card-title">Surface 604 V Rook NOW IN STOCK!!</h4>
+                            <h6 class="cl-featured-card-price">RWF 45,600</h6>
+                        </div>
+                        <p class="cl-featured-card-desc">This is the item description Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae repellendus numquam nemo quos nostrum quis perferendis!</p>
+                    </div>
+                </div>
+            </a>
+            <a href="" class="cl-featured-card-container">
+                <div class="cl-featured-card">
+                    <img class="cl-featured-card-image" src="https://media.kijiji.ca/api/v1/ca-prod-fsbo-ads/images/b7/b77ed156-545d-4134-b067-4598026d44c9?rule=kijijica-200-webp" alt="image">
+                    <div class="cl-featured-card-content">
+                        <div>
+                            <p class="cl-featured-card-info">Listed 10 hours ago by Muhanda Works</p>
+                            <h4 class="cl-featured-card-title">Surface 604 V Rook NOW IN STOCK!!</h4>
+                            <h6 class="cl-featured-card-price">RWF 45,600</h6>
+                        </div>
+                        <p class="cl-featured-card-desc">This is the item description Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae repellendus numquam nemo quos nostrum quis perferendis!</p>
+                    </div>
+                </div>
+            </a>
+
+        </div>
+        </div>
+      </section>
 </main>
+
+
 {% endblock %}
