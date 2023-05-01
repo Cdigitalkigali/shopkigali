@@ -17,14 +17,10 @@ Homepage
 </div>
 <main class="double-column">
   <div class="content sub-column">
-    <section>
-      <div class="arrow"
-        style="background-color: white; padding: 20px; float: right; font-size: 20px; position: relative; top: 200px;">>
-      </div>
+    <section style="position: relative;">
       <h5><strong>Malls and Shopping Centers in Kigali</strong></h5>
       <br>
-      <div id="button-left" onclick="scrollLft()"><i class="fa-solid fa-arrow-left"></i></div>
-      <div class="scrolling-wrapper row flex-row flex-nowrap  pb-4 pt-2">
+      <div id="malls-scrolling-wrapper" class="scrolling-wrapper row flex-row flex-nowrap  pb-4 pt-2">
         {% if malls|length == 0%}
         <p>Error Loading Malls</p>
         {% else %}
@@ -59,13 +55,14 @@ Homepage
         </div>
         {% endfor %}
         <div class="col-5">
-          <div class="card card-block card-1" style="display: flex; justify-content: center; align-items: center;">
+          <div class="card card-vertical card-block card-1" style="display: flex; justify-content: center; align-items: center;">
             <h3>See All</h3>
           </div>
         </div>
         {% endif %}
+        <div id="button-left" onclick="scrollMalls(1)"><i class="fa-solid fa-arrow-left"></i></div>
+        <div id="button-right" onclick="scrollMalls(2)"><i class="fa-solid fa-arrow-right"></i></div>
       </div>
-      <div id="button-right" onclick="scrollRight()"><i class="fa-solid fa-arrow-right"></i></div>
     </section>
     <section style="height: 300px;">
       <p>Advertisement</p>

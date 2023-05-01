@@ -36,16 +36,10 @@ app.config['ALLOWED_EXTENSIONS'] = ALLOWED_EXTENSIONS
 # -------------------- HOMEPAGE -------------------- #
 @app.route("/") 
 def index():
-    session.clear()
     malls = db.execute("SELECT * FROM mall_listings")
     restaurants = db.execute("SELECT * FROM restaurant_listings")
     hotels = db.execute("SELECT * FROM hotel_listings")
     blog = db.execute("SELECT * FROM blog_posts")
-
-    #if session:
-        #current_user = db.execute("SELECT * FROM users WHERE id = :id", id = session["user_id"])
-        #return render_template("index.html", malls=malls, hotels=hotels, restaurants=restaurants, user=current_user)
-    
     return render_template("index.html", malls=malls, hotels=hotels, restaurants=restaurants, blog=blog)
 
 # -------------------- SUBSCRIPTION FORM -------------------- #
@@ -54,60 +48,6 @@ def sub():
     email = request.form.get("email")
     db.execute("INSERT INTO subs (email) VALUES (:email)", email=email)
     return redirect("/")
-
-# -------------------- SIGNUP -------------------- #
-@app.route("/signup", methods=["POST"])
-def signup():
-    # Collect form data
-    name = request.form.get("name")
-    email = request.form.get("email")
-    password = request.form.get("password")
-    # Check if account already exists
-    check = db.execute("SELECT * FROM users WHERE email = :email", email=email)
-    if len(check) > 0:
-        flash("An account with that email already exists")
-        return redirect("/")
-    else:
-        # if account doesn't already exist, sign user up
-        db.execute("INSERT INTO users (username, email, password_hash) VALUES (:name, :email, :password)", 
-        name = name, 
-        email = email, 
-        password = generate_password_hash(password)
-        )
-        # log user in
-        current_user = db.execute("SELECT * FROM users WHERE email == :email", email=email)
-        session["user_id"] = current_user[0]["id"]
-        flash("Signed in successfully")
-        return redirect("/")
-
-# -------------------- LOGIN -------------------- #
-@app.route("/login", methods=["POST"])
-def login():
-    # collect form data
-    email = request.form.get("email")
-    password = request.form.get("password")
-    # check if password and email is correct
-    check = db.execute("SELECT * FROM users WHERE email = :email", email=email)
-    if len(check) < 1:
-        flash("That account does not exist")
-        return redirect("/")
-    else:
-        if not check_password_hash(check[0]["password_hash"], password):
-            flash("Email or password is incorrect")
-            return redirect("/")
-        else:
-            # sign user in
-            session["user_id"] = check[0]["id"]
-            flash("Signed in successfully")
-            return redirect("/")
-
-# -------------------- LOGOUT -------------------- #
-@app.route("/logout")
-def logout():
-    session.clear()
-    flash("Logged out Successfully")
-    return redirect("/")
-
 # -------------------- ABOUT -------------------- #
 @app.route("/about")
 def about():
@@ -173,6 +113,10 @@ def blog_fashion():
 @app.route("/classifieds")
 def classifieds():
     return render_template("classifieds.html")
+
+@app.route("/classifieds/form")
+def classifieds_form():
+    return render_template("classifieds-form.html")
 
 
 # -------------------- CONTACT -------------------- #

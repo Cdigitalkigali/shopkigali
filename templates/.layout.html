@@ -41,6 +41,9 @@
             <li><a class="dropdown-item" href="/restaurants">Restaurants</a></li>
           </ul>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/classidieds">Classifieds</a>
+        </li>
         <li class="nav-item dropdown">
           <a href="/blog" class="nav-link">
             Blog <i class="fa-solid fa-angle-down"></i>
@@ -52,105 +55,17 @@
           </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/classidieds">Classifieds</a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link">Contact</a>
         </li>
       </ul>
       <div class="d-flex">
-        {% if session.user_id %}
-        <li class="nav-item dropdown">
-          <a href="/blog" class="nav-link">
-            {{ user[0]["username"] }} <i class="fa-solid fa-angle-down"></i>
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="/">Profile</a></li>
-            <li><a class="dropdown-item" href="/">My ShopKigali</a></li>
-            <li><a class="dropdown-item" href="/logout">Logout</a></li>
-          </ul>
-        </li>
-        {% else %}
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#sModal">
-            Sign Up
-          </button>
-          <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#lModal">
-            Login
-          </button>
-        {% endif %}
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#sModal" style="width:160px;">
+          Advertise Now
+        </button>
       </div>
     </div>
   </div>
 </nav>
-<!-- Signup Modal -->
-<div class="modal fade" id="sModal" tabindex="-1" aria-labelledby="sModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-body">
-        <img src="../static/images/logo.png" alt="SHOPKigali" width="auto" height="50">
-        <h3 class="modal-title" id="exampleModalLabel">Sign Up</h3>
-        <br>
-        <form method="POST" action="/signup">
-          <div class="form-outline mb-1">
-            <input name="name" type="text" id="form3Example1cg" class="form-control form-control" />
-            <label class="form-label" for="form3Example1cg">Your Name</label>
-          </div>
-          <div class="form-outline mb-1">
-            <input name="email" type="email" id="form3Example3cg" class="form-control form-control" />
-            <label class="form-label" for="form3Example3cg">Email</label>
-          </div>
-          <div class="form-outline mb-1">
-            <input name="password" type="password" id="form3Example4cg" class="form-control form-control" />
-            <label class="form-label" for="form3Example4cg">Password</label>
-          </div>
-          <div class="form-outline mb-1">
-            <input name="cpassword" type="password" id="form3Example4cdg" class="form-control form-control" />
-            <label class="form-label" for="form3Example4cdg">Confirm password</label>
-          </div>
-          <div class="form-check d-flex mb-5">
-            <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3cg"
-              style="width: 15px; height: 15px;" />
-            <label class="form-check-label" for="form2Example3g">
-              I agree all statements in <a href="#!" class="text-body"><u>Terms of service</u></a>
-            </label>
-          </div>
-          <div class="d-flex justify-content-center">
-            <button type="submit" class="btn btn-primary">Sign Up</button>
-          </div>
-          <p class="text-center text-muted mt-1 mb-0">Have already an account? <a href="#!"
-              class="fw-bold text-body"><u>Login here</u></a></p>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Login Modal -->
-<div class="modal fade" id="lModal" tabindex="-1" aria-labelledby="lModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-body">
-        <h3 class="modal-title" id="exampleModalLabel">Login</h3>
-        <br>
-        <form action="/login" method="POST">
-          <div class="form-outline mb-1">
-            <input type="email" id="form3Example3cg" class="form-control form-control" />
-            <label name="email" class="form-label" for="form3Example3cg">Email</label>
-          </div>
-          <div class="form-outline mb-1">
-            <input type="password" id="form3Example4cg" class="form-control form-control" />
-            <label name="password" class="form-label" for="form3Example4cg">Password</label>
-          </div>
-          <div class="d-flex justify-content-center">
-            <button type="button" class="btn btn-primary">Login</button>
-          </div>
-          <p class="text-center text-muted mt-1 mb-0">No Account? <a href="#!" class="fw-bold text-body"><u>Sign
-                Up</u></a></p>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-
 {% block main %}{% endblock %}
 <!-- Site footer -->
 <footer class="site-footer">
@@ -191,19 +106,18 @@
       <div class="col-xs-6 col-md-3">
         <h6>Explore</h6>
         <ul class="footer-links">
-          <li><a href="http://scanfcode.com/category/c-language/">Classified/a></li>
-          <li><a href="http://scanfcode.com/category/front-end-development/">Malls & Shopping Centers</a></li>
-          <li><a href="http://scanfcode.com/category/back-end-development/">Restaurants</a></li>
-          <li><a href="http://scanfcode.com/category/java-programming-language/">Hotels</a></li>
-          <li><a href="http://scanfcode.com/category/java-programming-language/">Blog</a></li>
+          <li><a href="/classifieds">Classified</a></li>
+          <li><a href="/malls-and-shopping-centers">Malls & Shopping Centers</a></li>
+          <li><a href="/restaurants">Restaurants</a></li>
+          <li><a href="/hotels">Hotels</a></li>
+          <li><a href="/blog">Blog</a></li>
         </ul>
       </div>
 
       <div class="col-xs-6 col-md-3">
         <h6>Quick Links</h6>
         <ul class="footer-links">
-          <li><a href="http://scanfcode.com/about/">About Us</a></li>
-          <li><a href="http://scanfcode.com/contact/">Contact Us</a></li>
+          <li><a href="/about">About Us</a></li>
           <li><a href="/terms">Terms and Conditions</a></li>
           <li><a href="/privacy">Privacy Policy</a></li>
           <li><a href="http://scanfcode.com/sitemap/">Sitemap</a></li>

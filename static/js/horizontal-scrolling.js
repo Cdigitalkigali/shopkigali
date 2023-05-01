@@ -1,16 +1,22 @@
-const outsider = document.getElementById('scrolling-wrapper');
-const distance = 200;
+/* --------------------------------------------------------------
+Buttons to scroll the horizontal lists on the homepage 
+-------------------------------------------------------------- */
 
-function scrollLft() {
-  outsider.scrollBy({
-    left: -distance,
-    behavior: 'smooth'
-  });
-}
+const distance = 400;
 
-function scrollRight() {
-  outsider.scrollBy({
-    left: distance,
-    behavior: 'smooth'
-  });
+function scrollMalls(direction){
+  var outsider = document.getElementById('malls-scrolling-wrapper');
+  if (direction == 1 ){
+    // left
+    outsider.scrollBy({
+      left: -distance,
+      behavior: 'smooth'
+    });
+  } else {
+    // right
+    outsider.scrollBy({
+      left: distance,
+      behavior: 'smooth'
+    });
+  }
 }
